@@ -1,6 +1,6 @@
-package com.baseflow.googleapiavailability.data;
+package com.baseflow.googleapiavailability.data
 
-import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.SerializedName
 
 enum class PlayServicesAvailability {
     @SerializedName("success")
