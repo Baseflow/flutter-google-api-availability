@@ -51,7 +51,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: new Center(
           child: new Text(
-              'Google Play Store status: ${_playStoreAvailability.toString().split('.').last}}\n'),
+              'Google Play Store status: ${_playStoreAvailability.toString().split('.').last}\n'),
         ),
       ),
     );
