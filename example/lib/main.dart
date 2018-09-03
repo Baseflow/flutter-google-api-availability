@@ -12,7 +12,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
+  GooglePlayServicesAvailability _playStoreAvailability =
+      GooglePlayServicesAvailability.unknown;
 
   @override
   void initState() {
@@ -22,12 +23,13 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    String platformVersion;
+    GooglePlayServicesAvailability playStoreAvailability;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      platformVersion = await GoogleApiAvailability.platformVersion;
+      playStoreAvailability =
+          await GoogleApiAvailability().checkGooglePlayServicesAvailability();
     } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
+      playStoreAvailability = GooglePlayServicesAvailability.unknown;
     }
 
     // If the widget was removed from the tree while the asynchronous platform
@@ -36,7 +38,7 @@ class _MyAppState extends State<MyApp> {
     if (!mounted) return;
 
     setState(() {
-      _platformVersion = platformVersion;
+      _playStoreAvailability = playStoreAvailability;
     });
   }
 
@@ -48,7 +50,8 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: new Center(
-          child: new Text('Running on: $_platformVersion\n'),
+          child: new Text(
+              'Google Play Store status: ${_playStoreAvailability.toString().split('.').last}}\n'),
         ),
       ),
     );
