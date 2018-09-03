@@ -6,8 +6,8 @@ A Flutter plugin to check the availability of Google Play services on the curren
 
 Branch  | Build Status 
 ------- | ------------
-develop | [![Build Status](https://travis-ci.com/BaseflowIT/flutter-flutter-google-api-availability.svg?branch=develop)](https://travis-ci.com/BaseflowIT/flutter-flutter-google-api-availability)
-master  | [![Build Status](https://travis-ci.com/BaseflowIT/flutter-flutter-google-api-availability.svg?branch=master)](https://travis-ci.com/BaseflowIT/flutter-flutter-google-api-availability)
+develop | [![Build Status](https://travis-ci.com/BaseflowIT/flutter-google-api-availability.svg?branch=develop)](https://travis-ci.com/BaseflowIT/flutter-google-api-availability)
+master  | [![Build Status](https://travis-ci.com/BaseflowIT/flutter-google-api-availability.svg?branch=master)](https://travis-ci.com/BaseflowIT/flutter-google-api-availability)
 
 ## Features
 
@@ -31,21 +31,20 @@ dependencies:
 To check the availability of Google Play services on the current device, you can use the `checkGooglePlayServicesAvailability` method. This could be helpful to provide a more friendly experience to users in case an user-action is required to enable support for Google Play services (More information can be found [here](https://developers.google.com/android/guides/setup)). 
 
 ``` dart
-import `package:flutter-google-api-availability/flutter-google-api-availability.dart`;
+import `package:google_api_availability/google_api_availability.dart`;
 
-GooglePlayServicesAvailability availability = 
-  await flutter-google-api-availability().checkGooglePlayServicesAvailability();
+GooglePlayServicesAvailability availability = await GoogleApiAvailability().checkGooglePlayServicesAvailability();
 ```
 
 See also the [example](example/lib/main.dart) project for a complete implementation.
 
 ## Issues
 
-Please file any issues, bugs or feature request as an issue on our [GitHub](https://github.com/BaseflowIT/flutter-flutter-google-api-availability/issues) page.
+Please file any issues, bugs or feature request as an issue on our [GitHub](https://github.com/BaseflowIT/flutter-google-api-availability/issues) page.
 
 ## Want to contribute
 
-If you would like to contribute to the plugin (e.g. by improving the documentation, solving a bug or adding a cool new feature), please carefully review our [contribution guide](CONTRIBUTING.md) and send us your [pull request](https://github.com/BaseflowIT/flutter-flutter-google-api-availability/pulls).
+If you would like to contribute to the plugin (e.g. by improving the documentation, solving a bug or adding a cool new feature), please carefully review our [contribution guide](CONTRIBUTING.md) and send us your [pull request](https://github.com/BaseflowIT/flutter-google-api-availability/pulls).
 
 ## Author
 
