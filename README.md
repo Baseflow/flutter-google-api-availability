@@ -36,6 +36,14 @@ import `package:google_api_availability/google_api_availability.dart`;
 GooglePlayServicesAvailability availability = await GoogleApiAvailability().checkGooglePlayServicesAvailability();
 ```
 
+If you want to show a dialog by the Android system with more information and show a possible fix to the user you can do:
+
+``` dart
+import `package:google_api_availability/google_api_availability.dart`;
+
+GooglePlayServicesAvailability availability = await GoogleApiAvailability().checkGooglePlayServicesAvailability(true);
+```
+
 See also the [example](example/lib/main.dart) project for a complete implementation.
 
 ## Issues
