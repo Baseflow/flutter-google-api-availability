@@ -1,6 +1,6 @@
 # Flutter Google Api Availability Plugin  
 
-[![pub package](https://img.shields.io/pub/v/flutter-google-api-availability.svg)](https://pub.dartlang.org/packages/flutter-google-api-availability)
+[![pub package](https://img.shields.io/pub/v/google_api_availability.svg)](https://pub.dartlang.org/packages/google_api_availability)
 
 A Flutter plugin to check the availability of Google Play services on the current device. 
 
