@@ -1,6 +1,6 @@
 name: google_api_availability
-description: A new flutter plugin project.
-version: 0.0.1
+description: A Flutter plugin to check the availability of Google Play Services on an Android device.
+version: 1.0.0
 author: Baseflow <hello@baseflow.com>
 homepage: https://github.com/baseflowit/flutter-google-api-availability
 
@@ -10,6 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  meta: ^1.1.6
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
