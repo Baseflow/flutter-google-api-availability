@@ -15,7 +15,7 @@ master  | [![Build Status](https://travis-ci.com/BaseflowIT/flutter-google-api-a
 
 ## Usage
 
-To use this plugin, add `flutter-google-api-availability` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/). For example:
+To use this plugin, add `google_api_availability` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/). For example:
 
 ```yaml
 dependencies:
@@ -56,4 +56,4 @@ If you would like to contribute to the plugin (e.g. by improving the documentati
 
 ## Author
 
-This flutter-google-api-availability plugin for Flutter is developed by [Baseflow](https://baseflow.com). You can contact us at <hello@baseflow.com>
+This Google Api Availability plugin for Flutter is developed by [Baseflow](https://baseflow.com). You can contact us at <hello@baseflow.com>
