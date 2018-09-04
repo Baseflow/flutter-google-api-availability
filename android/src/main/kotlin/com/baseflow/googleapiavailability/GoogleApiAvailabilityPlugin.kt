@@ -1,5 +1,6 @@
 package com.baseflow.googleapiavailability
 
+import android.app.Activity
 import android.content.Context
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
@@ -11,36 +12,39 @@ import com.baseflow.googleapiavailability.utils.Codec
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 
-class GoogleApiAvailabilityPlugin(val context: Context): MethodCallHandler {
-  companion object {
-    @JvmStatic
-    fun registerWith(registrar: Registrar) {
-      val channel = MethodChannel(registrar.messenger(), "flutter.baseflow.com/google_api_availability/methods")
-      channel.setMethodCallHandler(GoogleApiAvailabilityPlugin(context = registrar.activity()))
+class GoogleApiAvailabilityPlugin(val activity: Activity) : MethodCallHandler {
+    companion object {
+        val REQUEST_GOOGLE_PLAY_SERVICES = 1000
+
+        @JvmStatic
+        fun registerWith(registrar: Registrar) {
+            val channel = MethodChannel(registrar.messenger(), "flutter.baseflow.com/google_api_availability/methods")
+            channel.setMethodCallHandler(GoogleApiAvailabilityPlugin(activity = registrar.activity()))
+        }
     }
-  }
 
-  override fun onMethodCall(call: MethodCall, result: Result) {
-    when {
-          call.method == "checkPlayServicesAvailability" -> {
-            val googleApiAvailability = GoogleApiAvailability.getInstance()
-            val connectionResult = googleApiAvailability.isGooglePlayServicesAvailable(context)
-            val availability = toPlayServiceAvailability(connectionResult)
+    override fun onMethodCall(call: MethodCall, result: Result) {
+        when {
+            call.method == "checkPlayServicesAvailability" -> {
+                val showDialog: Boolean = call.argument("showDialog")
+                val googleApiAvailability = GoogleApiAvailability.getInstance()
+                val connectionResult = googleApiAvailability.isGooglePlayServicesAvailable(activity)
 
-            //TODO: Add optional bool to show error dialog
-            //if (GoogleApiAvailability.getInstance().showErrorDialogFragment(context, connectionResult, REQUEST_GOOGLE_PLAY_SERVICES)) {
-            //     return
-            //}
-            result.success(Codec.encodePlayServicesAvailability(availability))
-          }
-          else -> result.notImplemented()
-      }
-  }
+                if (showDialog){
+                    googleApiAvailability.showErrorDialogFragment(activity, connectionResult, REQUEST_GOOGLE_PLAY_SERVICES)
+                }
 
-  private fun toPlayServiceAvailability(connectionResult: Int): PlayServicesAvailability {
-      var availability: PlayServicesAvailability = PlayServicesAvailability.UNKNOWN
+                val availability = toPlayServiceAvailability(connectionResult)
+                result.success(Codec.encodePlayServicesAvailability(availability))
+            }
+            else -> result.notImplemented()
+        }
+    }
 
-      when (connectionResult) {
+    private fun toPlayServiceAvailability(connectionResult: Int): PlayServicesAvailability {
+        var availability: PlayServicesAvailability = PlayServicesAvailability.UNKNOWN
+
+        when (connectionResult) {
             ConnectionResult.SUCCESS ->
                 availability = PlayServicesAvailability.SUCCESS
             ConnectionResult.SERVICE_MISSING ->
@@ -55,6 +59,6 @@ class GoogleApiAvailabilityPlugin(val context: Context): MethodCallHandler {
                 availability = PlayServicesAvailability.SERVICE_INVALID
         }
 
-      return availability;
+        return availability;
     }
 }

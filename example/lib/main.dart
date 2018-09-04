@@ -18,16 +18,16 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    initPlatformState();
+    //initPlatformState();
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
+  Future<void> initPlatformState([bool showDialog = false]) async {
     GooglePlayServicesAvailability playStoreAvailability;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       playStoreAvailability =
-          await GoogleApiAvailability().checkGooglePlayServicesAvailability();
+          await GoogleApiAvailability().checkGooglePlayServicesAvailability(showDialog);
     } on PlatformException {
       playStoreAvailability = GooglePlayServicesAvailability.unknown;
     }
@@ -49,11 +49,19 @@ class _MyAppState extends State<MyApp> {
         appBar: new AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: new Center(
-          child: new Text(
-              'Google Play Store status: ${_playStoreAvailability.toString().split('.').last}\n'),
-        ),
-      ),
+        body: new ListView(children: <Widget>[
+            new MaterialButton(
+              onPressed: () => initPlatformState(), 
+              child: new Text("Get PlayServices availability"), 
+              color: Colors.red,
+              ),
+            new MaterialButton(
+              onPressed: () => initPlatformState(true), 
+              child: new Text("Get PlayServices availability with fix dialog"), color: Colors.redAccent,
+              ),
+            new Center(child: Text('Google Play Store status: ${_playStoreAvailability.toString().split('.').last}\n')),
+          ],
+        )),
     );
   }
 }

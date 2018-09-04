@@ -31,13 +31,13 @@ class GoogleApiAvailability {
   /// the [checkPlayServicesAvailability] method will always return
   /// [GooglePlayServicesAvailability.notAvailableOnPlatform].
   Future<GooglePlayServicesAvailability>
-      checkGooglePlayServicesAvailability() async {
+      checkGooglePlayServicesAvailability([bool showDialogIfNecessary = false]) async {
     if (!Platform.isAndroid) {
       return GooglePlayServicesAvailability.notAvailableOnPlatform;
     }
 
     final dynamic availability =
-        await _methodChannel.invokeMethod('checkPlayServicesAvailability');
+        await _methodChannel.invokeMethod('checkPlayServicesAvailability', {"showDialog":showDialogIfNecessary} );
 
     return Codec.decodePlayServicesAvailability(availability);
   }
