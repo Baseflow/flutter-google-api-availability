@@ -41,6 +41,18 @@ matrix:
       script:
         - cd ./example
         - flutter build apk
+    # Job 2) Build the example binary for iOS (IPA)
+    - os: osx
+      env:
+        - SHARD="Build example ipas"
+      language: generic
+      osx_image: xcode9.3
+      before_script:
+        - ./scripts/before_build_ipas.sh
+        - export PATH=$HOME/flutter/bin:$HOME/flutter/bin/cache/dart-sdk/bin:$PATH
+      script:
+        - cd ./example
+        - flutter build ios --no-codesign
 cache:
   directories:
     - $HOME/.pub-cache
