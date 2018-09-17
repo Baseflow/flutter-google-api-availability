@@ -44,6 +44,8 @@ import `package:google_api_availability/google_api_availability.dart`;
 GooglePlayServicesAvailability availability = await GoogleApiAvailability().checkGooglePlayServicesAvailability(true);
 ```
 
+**Note that on iOS this will always return false!**
+
 See also the [example](example/lib/main.dart) project for a complete implementation.
 
 ## Issues
