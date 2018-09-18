@@ -3,7 +3,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'google_api_availability'
-  s.version          = '1.0.1'
+  s.version          = '1.0.2'
   s.summary          = 'A Flutter plugin to check the availability of Google Play Services on an Android device.'
   s.description      = <<-DESC
 A Flutter plugin to check the availability of Google Play Services on an Android device.
