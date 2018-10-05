@@ -26,11 +26,11 @@ class GoogleApiAvailabilityPlugin(val activity: Activity) : MethodCallHandler {
     override fun onMethodCall(call: MethodCall, result: Result) {
         when {
             call.method == "checkPlayServicesAvailability" -> {
-                val showDialog: Boolean = call.argument("showDialog")
+                val showDialog: Boolean? = call.argument("showDialog")
                 val googleApiAvailability = GoogleApiAvailability.getInstance()
                 val connectionResult = googleApiAvailability.isGooglePlayServicesAvailable(activity)
 
-                if (showDialog){
+                if (showDialog != null && showDialog){
                     googleApiAvailability.showErrorDialogFragment(activity, connectionResult, REQUEST_GOOGLE_PLAY_SERVICES)
                 }
 
