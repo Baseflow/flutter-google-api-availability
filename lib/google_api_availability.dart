@@ -13,8 +13,8 @@ part 'utils/codec.dart';
 class GoogleApiAvailability {
   factory GoogleApiAvailability() {
     if (_instance == null) {
-      final MethodChannel methodChannel =
-          const MethodChannel('flutter.baseflow.com/google_api_availability/methods');
+      final MethodChannel methodChannel = const MethodChannel(
+          'flutter.baseflow.com/google_api_availability/methods');
       _instance = new GoogleApiAvailability.private(methodChannel);
     }
     return _instance;
@@ -30,14 +30,14 @@ class GoogleApiAvailability {
   /// This feature is only available on Android devices. On any other platforms
   /// the [checkPlayServicesAvailability] method will always return
   /// [GooglePlayServicesAvailability.notAvailableOnPlatform].
-  Future<GooglePlayServicesAvailability>
-      checkGooglePlayServicesAvailability([bool showDialogIfNecessary = false]) async {
+  Future<GooglePlayServicesAvailability> checkGooglePlayServicesAvailability(
+      [bool showDialogIfNecessary = false]) async {
     if (!Platform.isAndroid) {
       return GooglePlayServicesAvailability.notAvailableOnPlatform;
     }
 
-    final dynamic availability =
-        await _methodChannel.invokeMethod('checkPlayServicesAvailability', {"showDialog":showDialogIfNecessary} );
+    final dynamic availability = await _methodChannel.invokeMethod(
+        'checkPlayServicesAvailability', {"showDialog": showDialogIfNecessary});
 
     return Codec.decodePlayServicesAvailability(availability);
   }
