@@ -18,11 +18,10 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    //initPlatformState();
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState([bool showDialog = false]) async {
+  Future<void> checkPlayServices([bool showDialog = false]) async {
     GooglePlayServicesAvailability playStoreAvailability;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
@@ -52,12 +51,12 @@ class _MyAppState extends State<MyApp> {
           body: new ListView(
             children: <Widget>[
               new MaterialButton(
-                onPressed: () => initPlatformState(),
+                onPressed: () => checkPlayServices(),
                 child: new Text("Get PlayServices availability"),
                 color: Colors.red,
               ),
               new MaterialButton(
-                onPressed: () => initPlatformState(true),
+                onPressed: () => checkPlayServices(true),
                 child:
                     new Text("Get PlayServices availability with fix dialog"),
                 color: Colors.redAccent,
