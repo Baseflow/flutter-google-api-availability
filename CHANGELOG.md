@@ -1,3 +1,7 @@
+## 1.0.4
+
+* Update used Kotlin and Gradle versions.
+
 ## 1.0.3
 
 * Bug fix that is introduced due to breaking changes in Flutter version 0.9.6.
