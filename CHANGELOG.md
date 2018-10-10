@@ -4,7 +4,11 @@
 
 ## 1.0.3
 
-* Hotfix which solves a dependency issue causing the code not to compile.
+* Bug fix that is introduced due to breaking changes in Flutter version 0.9.6.
+
+## 1.0.2
+
+* Add additional iOS configuration to make sure it compiles correcty using Swift 4.1
 
 ## 1.0.1
 
