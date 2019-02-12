@@ -36,7 +36,7 @@ class GoogleApiAvailability {
       return GooglePlayServicesAvailability.notAvailableOnPlatform;
     }
 
-    final dynamic availability = await _methodChannel.invokeMethod<String>(
+    final dynamic availability = await _methodChannel.invokeMethod(
         'checkPlayServicesAvailability',
         <String, bool>{'showDialog': showDialogIfNecessary});
 
