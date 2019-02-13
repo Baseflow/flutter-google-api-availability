@@ -1,3 +1,7 @@
+## 1.0.6
+
+* Fixes a small issue caused by compiling against master build of Flutter.
+
 ## 1.0.5
 
 * Update Kotlin version and added support for Android X;
