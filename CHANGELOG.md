@@ -1,3 +1,6 @@
+## 2.0.0
+* Move from swift to Objective-C and from Kotlin to Java
+
 ## 1.0.6
 
 * Fixes a small issue caused by compiling against master build of Flutter.

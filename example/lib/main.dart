@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
     GooglePlayServicesAvailability playStoreAvailability;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      playStoreAvailability = await GoogleApiAvailability()
+      playStoreAvailability = await GoogleApiAvailability.instance
           .checkGooglePlayServicesAvailability(showDialog);
     } on PlatformException {
       playStoreAvailability = GooglePlayServicesAvailability.unknown;
