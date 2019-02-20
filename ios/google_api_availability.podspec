@@ -3,7 +3,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'google_api_availability'
-  s.version          = '1.0.6'
+  s.version          = '2.0.0'
   s.summary          = 'A Flutter plugin to check the availability of Google Play Services on an Android device.'
   s.description      = <<-DESC
 A Flutter plugin to check the availability of Google Play Services on an Android device.
@@ -15,7 +15,7 @@ A Flutter plugin to check the availability of Google Play Services on an Android
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.swift_version = '4.2'
+
   s.ios.deployment_target = '8.0'
 end
 
