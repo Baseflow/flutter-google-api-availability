@@ -1,6 +1,7 @@
 package com.baseflow.googleapiavailability;
 
 import android.app.Activity;
+import android.content.Context;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -47,13 +48,13 @@ public class GoogleApiAvailabilityPlugin implements MethodCallHandler {
 
   public static void registerWith(Registrar registrar) {
     final MethodChannel channel = new MethodChannel(registrar.messenger(), "flutter.baseflow.com/google_api_availability/methods");
-    channel.setMethodCallHandler(new GoogleApiAvailabilityPlugin(registrar.activity()));
+    channel.setMethodCallHandler(new GoogleApiAvailabilityPlugin(registrar.context()));
   }
 
-  private final Activity activity;
+  private final Context context;
 
-  private GoogleApiAvailabilityPlugin(Activity activity) {
-    this.activity = activity;
+  private GoogleApiAvailabilityPlugin(Context context) {
+    this.context = context;
   }
 
   @Override
@@ -61,10 +62,14 @@ public class GoogleApiAvailabilityPlugin implements MethodCallHandler {
     if (call.method.equals("checkPlayServicesAvailability")) {
       final Boolean showDialog = call.argument("showDialog");
       GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
-      final int connectionResult = googleApiAvailability.isGooglePlayServicesAvailable(activity);
+      final int connectionResult = googleApiAvailability.isGooglePlayServicesAvailable(context);
 
-      if (showDialog != null && showDialog) {
-        googleApiAvailability.showErrorDialogFragment(activity, connectionResult, REQUEST_GOOGLE_PLAY_SERVICES);
+
+      if (context instanceof Activity) {
+        Activity activity = (Activity) context;
+        if (showDialog != null && showDialog) {
+          googleApiAvailability.showErrorDialogFragment(activity, connectionResult, REQUEST_GOOGLE_PLAY_SERVICES);
+        }
       }
 
       final int availability = toPlayServiceAvailability(connectionResult);

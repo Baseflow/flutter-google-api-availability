@@ -1,14 +1,22 @@
+## 2.0.1
+
+* No longer rely on the Activity object when this plugin is instantiated.
+
 ## 2.0.0
 * Move from swift to Objective-C and from Kotlin to Java
 
-## 1.0.6
+## 1.0.6+1 
+* Revert the breaking 1.0.6 update. 1.0.6 was known to be breaking and should have incremented the major version number instead of the minor. This revert is in and of itself breaking for anyone that has already migrated however. Anyone who has already migrated their app to AndroidX should immediately update to 2.0.0 instead. That's the correctly versioned new push of 1.0.6.
 
-* Fixes a small issue caused by compiling against master build of Flutter.
+## 1.0.6 
+* **BAD.** This was a breaking change that was incorrectly published on a minor version upgrade, should never have happened. Reverted by 1.0.6+1.
+
+"**Breaking change.** Migrate from the deprecated original Android Support Library to AndroidX. This shouldn't result in any functional changes, but it requires any Android apps using this plugin to also migrate if they're using the original support library."
 
 ## 1.0.5
+* **BAD.** This was a breaking change that was incorrectly published on a minor version upgrade, should never have happened. Reverted by 1.0.6+1.
 
-* Update Kotlin version and added support for Android X;
-* Update static code analysis options to confirm to the latest recommendations from the Flutter team.
+"**Breaking change.** Migrate from the deprecated original Android Support Library to AndroidX. This shouldn't result in any functional changes, but it requires any Android apps using this plugin to also migrate if they're using the original support library."
 
 ## 1.0.4
 
