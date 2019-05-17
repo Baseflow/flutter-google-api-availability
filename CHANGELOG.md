@@ -1,3 +1,7 @@
+## 2.0.1
+
+* No longer rely on the Activity object when this plugin is instantiated.
+
 ## 2.0.0
 * Move from swift to Objective-C and from Kotlin to Java
 
