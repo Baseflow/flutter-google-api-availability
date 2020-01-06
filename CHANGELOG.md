@@ -1,3 +1,8 @@
+## 2.0.2
+
+* Migrate to AndroidX
+* Synchonize Gradle and Gradle Wrapper versions with Flutter stable (1.12.13+hotfix.5)
+
 ## 2.0.1
 
 * No longer rely on the Activity object when this plugin is instantiated.
