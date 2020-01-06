@@ -8,7 +8,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.1'
+        classpath 'com.android.tools.build:gradle:3.5.0'
     }
 }
 
@@ -34,6 +34,6 @@ android {
 }
 
 dependencies {
-    api 'com.google.android.gms:play-services-location:16.0.0'
-    implementation 'androidx.annotation:annotation:1.0.1'
+    api 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'androidx.annotation:annotation:1.1.0'
 }
