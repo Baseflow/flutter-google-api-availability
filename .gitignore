@@ -39,6 +39,8 @@ android/.settings/
 /dev/docs/pubspec.yaml
 /packages/flutter/coverage/
 version
+**/.flutter-plugins-dependencies
+**/ios/Flutter/flutter_export_environment.sh
 
 # Flutter/Dart/Pub related
 **/doc/api/

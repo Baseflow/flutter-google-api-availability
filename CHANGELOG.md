@@ -1,3 +1,7 @@
+## 2.0.3
+
+* Android: Migrate to FlutterPlugin Android API (better support for Add-to-App);
+
 ## 2.0.2
 
 * Migrate to AndroidX
