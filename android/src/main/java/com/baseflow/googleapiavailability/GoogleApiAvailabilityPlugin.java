@@ -3,13 +3,18 @@ package com.baseflow.googleapiavailability;
 import android.app.Activity;
 import android.content.Context;
 
+import androidx.annotation.IntDef;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import androidx.annotation.IntDef;
+import io.flutter.embedding.engine.plugins.FlutterPlugin;
+import io.flutter.embedding.engine.plugins.activity.ActivityAware;
+import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
+import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
@@ -19,7 +24,7 @@ import io.flutter.plugin.common.PluginRegistry.Registrar;
 /**
  * GoogleApiAvailabilityPlugin
  */
-public class GoogleApiAvailabilityPlugin implements MethodCallHandler {
+public class GoogleApiAvailabilityPlugin implements MethodCallHandler, FlutterPlugin, ActivityAware {
   private static final int REQUEST_GOOGLE_PLAY_SERVICES = 1000;
 
   //GOOGLE_PLAY_SERVICES_AVAILABILITY
@@ -46,15 +51,50 @@ public class GoogleApiAvailabilityPlugin implements MethodCallHandler {
   private @interface GooglePlayServicesAvailability {
   }
 
-  public static void registerWith(Registrar registrar) {
-    final MethodChannel channel = new MethodChannel(registrar.messenger(), "flutter.baseflow.com/google_api_availability/methods");
-    channel.setMethodCallHandler(new GoogleApiAvailabilityPlugin(registrar.context()));
+  private Context context;
+  
+
+  public void setContext(Context newContext) {
+    context = newContext;
   }
 
-  private final Context context;
+  @Override
+  public void onAttachedToActivity(ActivityPluginBinding binding) {
+    setContext(binding.getActivity());
+  }
 
-  private GoogleApiAvailabilityPlugin(Context context) {
-    this.context = context;
+  @Override
+  public void onDetachedFromActivityForConfigChanges() {
+    setContext(null);
+  }
+
+  @Override
+  public void onReattachedToActivityForConfigChanges(ActivityPluginBinding binding) {
+    setContext(binding.getActivity());
+  }
+
+  @Override
+  public void onDetachedFromActivity() {
+    setContext(null);
+  }
+
+  @Override
+  public void onAttachedToEngine(FlutterPluginBinding binding) {
+    this.registerPlugin(null, binding.getBinaryMessenger());
+  }
+
+  @Override
+  public void onDetachedFromEngine(FlutterPluginBinding binding) {}
+
+  private void registerPlugin(Context context, BinaryMessenger messenger) {
+    final MethodChannel channel = new MethodChannel(messenger, "flutter.baseflow.com/google_api_availability/methods");
+    if (context != null) setContext(context);
+    channel.setMethodCallHandler(this);
+  }
+
+  public static void registerWith(Registrar registrar) {
+    final GoogleApiAvailabilityPlugin plugin = new GoogleApiAvailabilityPlugin();
+    plugin.registerPlugin(registrar.context(), registrar.messenger());
   }
 
   @Override
