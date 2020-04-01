@@ -41,7 +41,7 @@ public class GoogleApiAvailabilityPlugin implements FlutterPlugin, ActivityAware
 
   @Override
   public void onAttachedToEngine(FlutterPluginBinding binding) {
-    registerPlugin(null, binding.getBinaryMessenger());
+    registerPlugin(binding.getApplicationContext(), binding.getBinaryMessenger());
   }
 
   @Override
