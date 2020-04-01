@@ -15,7 +15,7 @@ import java.lang.annotation.RetentionPolicy;
 
 public class MethodCallHandlerImpl implements MethodChannel.MethodCallHandler {
 
-  public MethodCallHandlerImpl(Context applicationContext) {
+  MethodCallHandlerImpl(Context applicationContext) {
     this.applicationContext = applicationContext;
   }
 
@@ -24,7 +24,7 @@ public class MethodCallHandlerImpl implements MethodChannel.MethodCallHandler {
   @Nullable
   private Activity activity;
 
-  public void setActivity(@Nullable Activity activity) {
+  void setActivity(@Nullable Activity activity) {
     this.activity = activity;
   }
 
