@@ -2,9 +2,6 @@ name: google_api_availability_example
 description: Demonstrates how to use the google_api_availability plugin.
 version: 1.0.0+1
 
-environment:
-  sdk: ">=2.0.0 <3.0.0"
-
 dependencies:
   flutter:
     sdk: flutter
@@ -12,6 +9,9 @@ dependencies:
 
 dev_dependencies:
   flutter_test:
+    sdk: flutter
+  e2e: ^0.4.0
+  flutter_driver:
     sdk: flutter
 
   google_api_availability:

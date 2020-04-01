@@ -14,7 +14,7 @@
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
             android:windowSoftInputMode="adjustResize">
-            <meta-data android:name="flutterEmbedding" android:value="2"/> 
+            <meta-data android:name="flutterEmbedding" android:value="2"/>
             <!-- This keeps the window background of the activity showing
                  until Flutter renders its first frame. It can be removed if
                  there is no splash screen (such as the default splash screen
@@ -27,5 +27,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+          android:name=".EmbeddingV1Activity"
+          android:theme="@style/LaunchTheme"
+          android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale"
+          android:hardwareAccelerated="true"
+          android:windowSoftInputMode="adjustResize" />
+
+        <meta-data android:name="flutterEmbedding" android:value="2"/>
     </application>
 </manifest>
