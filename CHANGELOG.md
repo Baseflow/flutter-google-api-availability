@@ -1,3 +1,9 @@
+## 2.0.4
+
+* Android: Depend on GMS base instead of location;
+* Android: Make a clear separation between Application lifecycle and methodchannel implementation;
+* Android: Added end-to-end tests.
+
 ## 2.0.3+hotfix.1
 
 * Android: Fix a possible null reference when the plugin is called from an App running in the background.
