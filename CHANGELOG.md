@@ -1,3 +1,7 @@
+## 2.0.3+hotfix.1
+
+* Android: Fix a possible null reference when the plugin is called from an App running in the background.
+
 ## 2.0.3
 
 * Android: Migrate to FlutterPlugin Android API (better support for Add-to-App);
