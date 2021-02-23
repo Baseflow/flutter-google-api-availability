@@ -1,6 +1,9 @@
+/// Indicates possible states of the Google Api Services availability.
 class GooglePlayServicesAvailability {
   const GooglePlayServicesAvailability._(this.value);
 
+  /// Represents the integer value of the Google Api Services availability
+  /// state.
   final int value;
 
   /// Google Play services are installed on the device and ready to be used.
@@ -35,6 +38,7 @@ class GooglePlayServicesAvailability {
   static const GooglePlayServicesAvailability unknown =
       GooglePlayServicesAvailability._(7);
 
+  /// Returns a list with all possible Google Api Availability states.
   static const List<GooglePlayServicesAvailability> values =
       <GooglePlayServicesAvailability>[
     success,

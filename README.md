@@ -1,13 +1,8 @@
 # Flutter Google Api Availability Plugin  
 
-[![pub package](https://img.shields.io/pub/v/google_api_availability.svg)](https://pub.dartlang.org/packages/google_api_availability)
+[![pub package](https://img.shields.io/pub/v/google_api_availability.svg)](https://pub.dartlang.org/packages/google_api_availability) ![Build status](https://github.com/Baseflow/flutter-google-api-availability/workflows/google_api_availability/badge.svg?branch=master)
 
 A Flutter plugin to check the availability of Google Play services on the current device. 
-
-Branch  | Build Status 
-------- | ------------
-develop | [![Build Status](https://travis-ci.com/BaseflowIT/flutter-google-api-availability.svg?branch=develop)](https://travis-ci.com/BaseflowIT/flutter-google-api-availability)
-master  | [![Build Status](https://travis-ci.com/BaseflowIT/flutter-google-api-availability.svg?branch=master)](https://travis-ci.com/BaseflowIT/flutter-google-api-availability)
 
 ## Features
 
@@ -19,7 +14,7 @@ To use this plugin, add `google_api_availability` as a [dependency in your pubsp
 
 ```yaml
 dependencies:
-  google_api_availability: ^2.0.4
+  google_api_availability: ^3.0.0
 ```
 
 > **NOTE:** There's a known issue with integrating plugins that use Swift into a Flutter project created with the Objective-C template. See issue [Flutter#16049](https://github.com/flutter/flutter/issues/16049) for help on integration.
@@ -33,7 +28,7 @@ To check the availability of Google Play services on the current device, you can
 ``` dart
 import `package:google_api_availability/google_api_availability.dart`;
 
-GooglePlayServicesAvailability availability = await GoogleApiAvailability().checkGooglePlayServicesAvailability();
+GooglePlayServicesAvailability availability = await GoogleApiAvailability.instance.checkGooglePlayServicesAvailability();
 ```
 
 If you want to show a dialog by the Android system with more information and show a possible fix to the user you can do:
@@ -41,10 +36,10 @@ If you want to show a dialog by the Android system with more information and sho
 ``` dart
 import `package:google_api_availability/google_api_availability.dart`;
 
-GooglePlayServicesAvailability availability = await GoogleApiAvailability().checkGooglePlayServicesAvailability(true);
+GooglePlayServicesAvailability availability = await GoogleApiAvailability.instance.checkGooglePlayServicesAvailability(true);
 ```
 
-**Note that on iOS this will always return false!**
+**Note that on iOS this will always return `notAvailableOnPlatform`!**
 
 See also the [example](example/lib/main.dart) project for a complete implementation.
 

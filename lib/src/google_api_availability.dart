@@ -4,11 +4,17 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:google_api_availability/src/models/google_play_services_availability.dart';
 
+import 'models/google_play_services_availability.dart';
+
+/// Flutter plugin to verify if Google Play Services are installed on the
+/// device.
 class GoogleApiAvailability {
   const GoogleApiAvailability._();
 
+  /// Acquires an instance of the [GoogleApiAvailability] class.
   static const GoogleApiAvailability instance = GoogleApiAvailability._();
-  static MethodChannel methodChannel = const MethodChannel(
+
+  static final MethodChannel _methodChannel = const MethodChannel(
       'flutter.baseflow.com/google_api_availability/methods');
 
   /// This feature is only available on Android devices. On any other platforms
@@ -20,9 +26,13 @@ class GoogleApiAvailability {
       return GooglePlayServicesAvailability.notAvailableOnPlatform;
     }
 
-    final int availability = await methodChannel.invokeMethod(
+    final availability = await _methodChannel.invokeMethod(
         'checkPlayServicesAvailability',
         <String, bool>{'showDialog': showDialogIfNecessary});
+
+    if (availability == null) {
+      return GooglePlayServicesAvailability.unknown;
+    }
 
     return GooglePlayServicesAvailability.values[availability];
   }

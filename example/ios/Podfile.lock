@@ -1,22 +1,16 @@
 PODS:
   - Flutter (1.0.0)
-  - google_api_availability (0.0.1):
-    - Flutter
 
 DEPENDENCIES:
-  - Flutter (from `.symlinks/flutter/ios`)
-  - google_api_availability (from `.symlinks/plugins/google_api_availability/ios`)
+  - Flutter (from `Flutter`)
 
 EXTERNAL SOURCES:
   Flutter:
-    :path: ".symlinks/flutter/ios"
-  google_api_availability:
-    :path: ".symlinks/plugins/google_api_availability/ios"
+    :path: Flutter
 
 SPEC CHECKSUMS:
-  Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
-  google_api_availability: eacf2c87e9cb31b66d4852de6d1667616e24c055
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
 
-PODFILE CHECKSUM: aff02bfeed411c636180d6812254b2daeea14d09
+PODFILE CHECKSUM: 8e679eca47255a8ca8067c4c67aab20e64cb974d
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.10.1

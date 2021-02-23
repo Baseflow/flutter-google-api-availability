@@ -1,3 +1,7 @@
+## 3.0.0
+
+* Stable null safety release.
+
 ## 2.0.4
 
 * Android: Depend on GMS base instead of location;
