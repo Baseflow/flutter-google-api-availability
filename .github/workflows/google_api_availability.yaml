@@ -12,8 +12,8 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # Job configuration for the geolocator (App Facing Package)
-  geolocator:
+  # Job configuration for the google_api_availability (App Facing Package)
+  google_api_availability:
     # The type of runner that the job will run on
     runs-on: macos-latest
     env:
@@ -30,7 +30,7 @@ jobs:
         with:
           channel: 'beta'
 
-      # Download all Flutter packages the geolocator depends on
+      # Download all Flutter packages the google_api_availability depends on
       - name: Download dependencies
         run: flutter pub get
         working-directory: ${{env.source-directory}}
@@ -54,4 +54,3 @@ jobs:
       - name: Run iOS build
         run: flutter build ios --release --no-codesign
         working-directory: ${{env.example-directory}}
-        
