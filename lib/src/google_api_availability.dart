@@ -14,7 +14,7 @@ class GoogleApiAvailability {
   /// Acquires an instance of the [GoogleApiAvailability] class.
   static const GoogleApiAvailability instance = GoogleApiAvailability._();
 
-  static MethodChannel _methodChannel = const MethodChannel(
+  static final MethodChannel _methodChannel = const MethodChannel(
       'flutter.baseflow.com/google_api_availability/methods');
 
   /// This feature is only available on Android devices. On any other platforms
@@ -26,7 +26,7 @@ class GoogleApiAvailability {
       return GooglePlayServicesAvailability.notAvailableOnPlatform;
     }
 
-    final int? availability = await _methodChannel.invokeMethod(
+    final availability = await _methodChannel.invokeMethod(
         'checkPlayServicesAvailability',
         <String, bool>{'showDialog': showDialogIfNecessary});
 
