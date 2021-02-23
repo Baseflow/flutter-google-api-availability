@@ -28,7 +28,7 @@ To check the availability of Google Play services on the current device, you can
 ``` dart
 import `package:google_api_availability/google_api_availability.dart`;
 
-GooglePlayServicesAvailability availability = await GoogleApiAvailability().checkGooglePlayServicesAvailability();
+GooglePlayServicesAvailability availability = await GoogleApiAvailability.instance.checkGooglePlayServicesAvailability();
 ```
 
 If you want to show a dialog by the Android system with more information and show a possible fix to the user you can do:
@@ -36,7 +36,7 @@ If you want to show a dialog by the Android system with more information and sho
 ``` dart
 import `package:google_api_availability/google_api_availability.dart`;
 
-GooglePlayServicesAvailability availability = await GoogleApiAvailability().checkGooglePlayServicesAvailability(true);
+GooglePlayServicesAvailability availability = await GoogleApiAvailability.instance.checkGooglePlayServicesAvailability(true);
 ```
 
 **Note that on iOS this will always return `notAvailableOnPlatform`!**
