@@ -1,6 +1,12 @@
+import 'package:flutter/cupertino.dart';
+
 /// Indicates possible states of the Google Api Services availability.
 class GooglePlayServicesAvailability {
   const GooglePlayServicesAvailability._(this.value);
+  factory GooglePlayServicesAvailability.byValue(int value) => values[value];
+
+  @visibleForTesting
+  const GooglePlayServicesAvailability.private(this.value);
 
   /// Represents the integer value of the Google Api Services availability
   /// state.
