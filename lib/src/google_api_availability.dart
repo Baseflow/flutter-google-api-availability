@@ -1,6 +1,7 @@
 import 'dart:async';
-import 'dart:io';
 
+import 'package:flutter/foundation.dart';
+import 'package:meta/meta.dart';
 import 'package:flutter/services.dart';
 import 'package:google_api_availability/src/models/google_play_services_availability.dart';
 
@@ -10,6 +11,9 @@ import 'models/google_play_services_availability.dart';
 /// device.
 class GoogleApiAvailability {
   const GoogleApiAvailability._();
+
+  @visibleForTesting
+  const GoogleApiAvailability.private();
 
   /// Acquires an instance of the [GoogleApiAvailability] class.
   static const GoogleApiAvailability instance = GoogleApiAvailability._();
@@ -22,7 +26,7 @@ class GoogleApiAvailability {
   /// [GooglePlayServicesAvailability.notAvailableOnPlatform].
   Future<GooglePlayServicesAvailability> checkGooglePlayServicesAvailability(
       [bool showDialogIfNecessary = false]) async {
-    if (!Platform.isAndroid) {
+    if (defaultTargetPlatform != TargetPlatform.android) {
       return GooglePlayServicesAvailability.notAvailableOnPlatform;
     }
 

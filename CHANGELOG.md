@@ -1,3 +1,7 @@
+## 3.0.1
+
+* Added unit-tests to guard API against breaking changes.
+
 ## 3.0.0
 
 * Stable null safety release.

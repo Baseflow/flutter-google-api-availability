@@ -1,6 +1,6 @@
 # Flutter Google Api Availability Plugin  
 
-[![pub package](https://img.shields.io/pub/v/google_api_availability.svg)](https://pub.dartlang.org/packages/google_api_availability) ![Build status](https://github.com/Baseflow/flutter-google-api-availability/workflows/google_api_availability/badge.svg?branch=master)
+[![pub package](https://img.shields.io/pub/v/google_api_availability.svg)](https://pub.dartlang.org/packages/google_api_availability) ![Build status](https://github.com/Baseflow/flutter-google-api-availability/workflows/google_api_availability/badge.svg?branch=master) [![codecov](https://codecov.io/gh/Baseflow/flutter-google-api-availability/branch/master/graph/badge.svg)](https://codecov.io/gh/Baseflow/flutter-google-api-availability)
 
 A Flutter plugin to check the availability of Google Play services on the current device. 
 
@@ -14,7 +14,7 @@ To use this plugin, add `google_api_availability` as a [dependency in your pubsp
 
 ```yaml
 dependencies:
-  google_api_availability: ^3.0.0
+  google_api_availability: ^3.0.1
 ```
 
 > **NOTE:** There's a known issue with integrating plugins that use Swift into a Flutter project created with the Objective-C template. See issue [Flutter#16049](https://github.com/flutter/flutter/issues/16049) for help on integration.
