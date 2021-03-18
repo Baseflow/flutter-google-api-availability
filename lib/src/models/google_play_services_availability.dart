@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:meta/meta.dart';
 
 /// Indicates possible states of the Google Api Services availability.
 class GooglePlayServicesAvailability {
