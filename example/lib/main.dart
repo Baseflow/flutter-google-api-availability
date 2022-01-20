@@ -4,10 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_api_availability/google_api_availability.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 ///Creates the mutable state for this widget
 class MyApp extends StatefulWidget {
+  ///Named [key] parameter to identify a widget
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   _MyAppState createState() => _MyAppState();
 }
