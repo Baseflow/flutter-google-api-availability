@@ -10,8 +10,9 @@ void main() {
   test('Should receive notAvailableOnPlatform is not Android', () async {
     debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
 
-    final googlePlayServiceAvailability = await const GoogleApiAvailability.private()
-        .checkGooglePlayServicesAvailability();
+    final googlePlayServiceAvailability =
+        await const GoogleApiAvailability.private()
+            .checkGooglePlayServicesAvailability();
 
     expect(googlePlayServiceAvailability,
         GooglePlayServicesAvailability.notAvailableOnPlatform);
@@ -29,8 +30,9 @@ void main() {
       result: availability.value,
     );
 
-    final googlePlayServiceAvailability = await const GoogleApiAvailability.private()
-        .checkGooglePlayServicesAvailability();
+    final googlePlayServiceAvailability =
+        await const GoogleApiAvailability.private()
+            .checkGooglePlayServicesAvailability();
 
     expect(googlePlayServiceAvailability, availability);
   });
@@ -46,8 +48,9 @@ void main() {
       result: availability,
     );
 
-    final googlePlayServiceAvailability = await const GoogleApiAvailability.private()
-        .checkGooglePlayServicesAvailability();
+    final googlePlayServiceAvailability =
+        await const GoogleApiAvailability.private()
+            .checkGooglePlayServicesAvailability();
 
     expect(
         googlePlayServiceAvailability, GooglePlayServicesAvailability.unknown);

@@ -20,7 +20,8 @@ void main() {
   });
 
   test('check if toString method returns the corresponding name', () {
-    var playServicesAvailability = const GooglePlayServicesAvailability.private(0);
+    var playServicesAvailability =
+        const GooglePlayServicesAvailability.private(0);
 
     expect(playServicesAvailability.toString(),
         'GooglePlayServicesAvailability.success');
