@@ -5,6 +5,9 @@ analyzer:
     # Ignore generated files
     - '**/*.g.dart'
     - 'lib/src/generated/*.dart'
+    # workaround for https://github.com/dart-lang/sdk/issues/42910
+    - 'example/**'
+
 linter:
   rules:
     - public_member_api_docs
