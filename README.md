@@ -14,7 +14,7 @@ To use this plugin, add `google_api_availability` as a [dependency in your pubsp
 
 ```yaml
 dependencies:
-  google_api_availability: ^3.0.1
+  google_api_availability: ^3.0.2
 ```
 
 > **NOTE:** There's a known issue with integrating plugins that use Swift into a Flutter project created with the Objective-C template. See issue [Flutter#16049](https://github.com/flutter/flutter/issues/16049) for help on integration.

@@ -6,6 +6,7 @@ import 'package:google_api_availability/google_api_availability.dart';
 
 void main() => runApp(MyApp());
 
+///Creates the mutable state for this widget
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();

@@ -3,7 +3,7 @@ description: Demonstrates how to use the google_api_availability plugin.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.10.0 <3.0.0"
+  sdk: ">=2.15.0 <3.0.0"
 
 dependencies:
   flutter:

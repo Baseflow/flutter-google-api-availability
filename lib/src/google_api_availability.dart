@@ -1,7 +1,5 @@
 import 'dart:async';
-
 import 'package:flutter/foundation.dart';
-import 'package:meta/meta.dart';
 import 'package:flutter/services.dart';
 import 'package:google_api_availability/src/models/google_play_services_availability.dart';
 
@@ -12,13 +10,14 @@ import 'models/google_play_services_availability.dart';
 class GoogleApiAvailability {
   const GoogleApiAvailability._();
 
+  ///Only visible for testing purposes
   @visibleForTesting
   const GoogleApiAvailability.private();
 
   /// Acquires an instance of the [GoogleApiAvailability] class.
   static const GoogleApiAvailability instance = GoogleApiAvailability._();
 
-  static final MethodChannel _methodChannel = const MethodChannel(
+  static const MethodChannel _methodChannel = MethodChannel(
       'flutter.baseflow.com/google_api_availability/methods');
 
   /// This feature is only available on Android devices. On any other platforms

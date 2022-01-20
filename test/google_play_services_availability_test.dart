@@ -5,14 +5,14 @@ void main() {
   test(
       'GooglePlayServicesAvailability has the right amount of availability states',
       () {
-    final values = GooglePlayServicesAvailability.values;
+    const values = GooglePlayServicesAvailability.values;
 
     expect(values.length, 8);
   });
 
   test('check if corresponding status gets received when calling constructor',
       () {
-    final values = GooglePlayServicesAvailability.values;
+    const values = GooglePlayServicesAvailability.values;
 
     for (var i = 0; i < values.length; i++) {
       expect(values[i], GooglePlayServicesAvailability.byValue(i));
@@ -20,7 +20,7 @@ void main() {
   });
 
   test('check if toString method returns the corresponding name', () {
-    var playServicesAvailability = GooglePlayServicesAvailability.private(0);
+    var playServicesAvailability = const GooglePlayServicesAvailability.private(0);
 
     expect(playServicesAvailability.toString(),
         'GooglePlayServicesAvailability.success');

@@ -1,3 +1,11 @@
+## 3.0.2
+
+* Updated `pubspec.yaml` to newer versions of `SDK` and `flutter` and adding `flutter_lints` as a dependency;
+* Updated `analysis_options.yaml` for using `flutter_lints`;
+* Updated code according to the set lint rule(s);
+* Updated `compileSdkVersion` and `targetSdkVersion` in the `build.gradle`
+* Fixed bug were starting the example app would close on running for the first time by adding internet permission in the `AndroidManifest`
+
 ## 3.0.1
 
 * Added unit-tests to guard API against breaking changes.

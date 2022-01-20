@@ -3,8 +3,11 @@ import 'package:meta/meta.dart';
 /// Indicates possible states of the Google Api Services availability.
 class GooglePlayServicesAvailability {
   const GooglePlayServicesAvailability._(this.value);
+
+  /// Returns the value of the status as a string of the given status integer
   factory GooglePlayServicesAvailability.byValue(int value) => values[value];
 
+  ///Only used for testing purposes
   @visibleForTesting
   const GooglePlayServicesAvailability.private(this.value);
 

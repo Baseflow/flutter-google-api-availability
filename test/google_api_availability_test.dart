@@ -10,7 +10,7 @@ void main() {
   test('Should receive notAvailableOnPlatform is not Android', () async {
     debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
 
-    final googlePlayServiceAvailability = await GoogleApiAvailability.private()
+    final googlePlayServiceAvailability = await const GoogleApiAvailability.private()
         .checkGooglePlayServicesAvailability();
 
     expect(googlePlayServiceAvailability,
@@ -21,7 +21,7 @@ void main() {
 
   test('Should receive the corresponding GooglePlayServiceAvailability',
       () async {
-    final availability = GooglePlayServicesAvailability.serviceDisabled;
+    const availability = GooglePlayServicesAvailability.serviceDisabled;
 
     MethodChannelMock(
       channelName: 'flutter.baseflow.com/google_api_availability/methods',
@@ -29,7 +29,7 @@ void main() {
       result: availability.value,
     );
 
-    final googlePlayServiceAvailability = await GoogleApiAvailability.private()
+    final googlePlayServiceAvailability = await const GoogleApiAvailability.private()
         .checkGooglePlayServicesAvailability();
 
     expect(googlePlayServiceAvailability, availability);
@@ -38,7 +38,7 @@ void main() {
   test(
       'Should receive GooglePlayServiceAvailability.unknown when availability is null',
       () async {
-    final availability = null;
+    const availability = null;
 
     MethodChannelMock(
       channelName: 'flutter.baseflow.com/google_api_availability/methods',
@@ -46,7 +46,7 @@ void main() {
       result: availability,
     );
 
-    final googlePlayServiceAvailability = await GoogleApiAvailability.private()
+    final googlePlayServiceAvailability = await const GoogleApiAvailability.private()
         .checkGooglePlayServicesAvailability();
 
     expect(
