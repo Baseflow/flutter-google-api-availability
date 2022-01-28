@@ -2,8 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.baseflow.googleapiavailabilityexample">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
-        android:name="io.flutter.app.FlutterApplication"
+        android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:label="google_api_availability_example"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
@@ -34,7 +36,6 @@
           android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale"
           android:hardwareAccelerated="true"
           android:windowSoftInputMode="adjustResize" />
-
         <meta-data android:name="flutterEmbedding" android:value="2"/>
     </application>
 </manifest>
