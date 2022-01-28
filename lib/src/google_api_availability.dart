@@ -10,7 +10,9 @@ import 'models/google_play_services_availability.dart';
 class GoogleApiAvailability {
   const GoogleApiAvailability._();
 
-  ///Only visible for testing purposes
+  /// Creates an instance of the [GoogleApiAvailability] class. This 
+  /// constructor is exposed for testing purposes only and should not be used 
+  /// by clients of the plugin as it may break or change at any time. 
   @visibleForTesting
   const GoogleApiAvailability.private();
 
