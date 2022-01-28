@@ -18,6 +18,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   GooglePlayServicesAvailability _playStoreAvailability =
       GooglePlayServicesAvailability.unknown;
+  bool _madeGooglePlayServiceAvailable = false;
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> checkPlayServices([bool showDialog = false]) async {
@@ -42,6 +43,28 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  Future<void> makeGooglePlayServicesAvailable() async {
+    bool madeGooglePlayServiceAvailable;
+
+    try {
+      madeGooglePlayServiceAvailable = await GoogleApiAvailability.instance
+          .makeGooglePlayServicesAvailable();
+    } on PlatformException {
+      madeGooglePlayServiceAvailable = false;
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) {
+      return;
+    }
+
+    setState(() {
+      _madeGooglePlayServiceAvailable = madeGooglePlayServiceAvailable;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -56,15 +79,24 @@ class _MyAppState extends State<MyApp> {
                 child: const Text('Get PlayServices availability'),
                 color: Colors.red,
               ),
+              Center(
+                  child: Text(
+                      'Google Play Store status: ${_playStoreAvailability.toString().split('.').last}\n')
+              ),
+              MaterialButton(
+                onPressed: () => makeGooglePlayServicesAvailable(),
+                child: const Text('Set Google Play Service to availabe'),
+                color: Colors.red,
+              ),
+              Center(
+                  child: Text(
+                      'Make available: $_madeGooglePlayServiceAvailable\n')),
               MaterialButton(
                 onPressed: () => checkPlayServices(true),
                 child:
                     const Text('Get PlayServices availability with fix dialog'),
                 color: Colors.redAccent,
               ),
-              Center(
-                  child: Text(
-                      'Google Play Store status: ${_playStoreAvailability.toString().split('.').last}\n')),
             ],
           )),
     );

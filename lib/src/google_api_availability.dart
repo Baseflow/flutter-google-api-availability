@@ -41,4 +41,20 @@ class GoogleApiAvailability {
 
     return GooglePlayServicesAvailability.values[availability];
   }
+
+  /// Returns true if the device was able to set Google Play Services to available.
+  /// Returns false if the device was unable to set Google Play Services to available or staus is unknown.
+  ///
+  /// If it is necessary to display UI in order to complete this request
+  /// (e.g. sending the user to the Google Play store) the passed Activity will be used to display this UI.
+  Future<bool> makeGooglePlayServicesAvailable() async {
+    if (defaultTargetPlatform != TargetPlatform.android) {
+      return false;
+    }
+
+    final availability = await _methodChannel.invokeMethod(
+        'makeGooglePlayServicesAvailable');
+
+    return availability;
+  }
 }
