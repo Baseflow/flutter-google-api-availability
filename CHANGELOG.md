@@ -1,3 +1,13 @@
+## 4.0.0
+
+* Changed the structure of the native code;
+* Updated the example app;
+* Added `makeGooglePlayServicesAvailable` ;
+* Added `getErrorString`;
+* Added `isUserResolvable`;
+* Added `showErrorNotification`;
+* Added extra tests for the newly added methods.
+
 ## 3.0.2
 
 * Updated `pubspec.yaml` to newer versions of `SDK` and `flutter` and adding `flutter_lints` as a dependency;

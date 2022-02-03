@@ -42,8 +42,8 @@ class GoogleApiAvailability {
     return GooglePlayServicesAvailability.values[availability];
   }
 
-  /// Returns true if the device was able to set Google Play Services to available.
-  /// Returns false if the device was unable to set Google Play Services to available or staus is unknown.
+  /// Returns true if the device was able to set Google Play Services to available,
+  /// Returns false if the device was unable to set Google Play Services to available or status is unknown.
   ///
   /// If it is necessary to display UI in order to complete this request
   /// (e.g. sending the user to the Google Play store) the passed Activity will be used to display this UI.
@@ -56,5 +56,49 @@ class GoogleApiAvailability {
         await _methodChannel.invokeMethod('makeGooglePlayServicesAvailable');
 
     return availability;
+  }
+
+  /// Returns the result of the connection status as a string.
+  /// Will return "Not available on non Android devices" if used on iOS.
+  Future<String> getErrorString() async {
+    if (defaultTargetPlatform != TargetPlatform.android) {
+      return "Not available on non Android devices";
+    }
+
+    final errorString = await _methodChannel.invokeMethod('getErrorString');
+
+    return errorString;
+  }
+
+  /// Returns true if the error is resolvable with getErrorDialog.
+  /// Returns false if the error is not resolvable by the user,
+  /// or the Play Service Availability is already available.
+  Future<bool> isUserResolvable() async {
+    if (defaultTargetPlatform != TargetPlatform.android) {
+      return false;
+    }
+
+    final isUserResolvable =
+        await _methodChannel.invokeMethod('isUserResolvable');
+
+    return isUserResolvable;
+  }
+
+  /// Displays a notification for an error code, if it is resolvable by the user.
+  /// This method is similar to [getErrorDialog], but is provided for
+  /// background tasks that cannot or should not display dialogs.
+  ///
+  /// Returns true if the connection status did not equal [SUCCESS] or
+  /// any other non-[ConnectionResult] value.
+  /// Returns false otherwise.
+  Future<bool> showErrorNotification() async {
+    if (defaultTargetPlatform != TargetPlatform.android) {
+      return false;
+    }
+
+    final showErrorNotification =
+        await _methodChannel.invokeMethod('showErrorNotification');
+
+    return showErrorNotification;
   }
 }

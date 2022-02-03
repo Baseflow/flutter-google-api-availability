@@ -42,7 +42,7 @@ public class MethodCallHandlerImpl implements MethodChannel.MethodCallHandler {
         switch (call.method) {
             case "checkPlayServicesAvailability": {
                 final Boolean showDialog = call.argument("showDialog");
-                googleApiAvailabilityManager.checkPlayServicesAvailability(showDialog, applicationContext, result::success,
+                googleApiAvailabilityManager.checkPlayServicesAvailability(showDialog, activity, applicationContext, result::success,
                         (String errorCode, String errorDescription) -> result.error(
                         errorCode,
                         errorDescription,
@@ -55,6 +55,27 @@ public class MethodCallHandlerImpl implements MethodChannel.MethodCallHandler {
                                 errorCode,
                                 errorDescription,
                                 null));
+                break;
+            }
+            case "getErrorString": {
+                googleApiAvailabilityManager.getErrorString(applicationContext, result::success,(String errorCode, String errorDescription) -> result.error(
+                        errorCode,
+                        errorDescription,
+                        null));
+                break;
+            }
+            case "isUserResolvable": {
+                googleApiAvailabilityManager.isUserResolvable(applicationContext, result::success,(String errorCode, String errorDescription) -> result.error(
+                        errorCode,
+                        errorDescription,
+                        null));
+                break;
+            }
+            case "showErrorNotification": {
+                googleApiAvailabilityManager.showErrorNotification(applicationContext, result::success,(String errorCode, String errorDescription) -> result.error(
+                        errorCode,
+                        errorDescription,
+                        null));
                 break;
             }
             default:
