@@ -12,7 +12,7 @@ public class GoogleApiAvailabilityManager {
 
     @FunctionalInterface
     interface SuccessCallback {
-        void onSuccess(@GoogleApiAvailabilityConstants.GooglePlayServicesAvailability int connectionResult);
+        void onSuccess(int connectionResult);
     }
 
     @FunctionalInterface
@@ -40,7 +40,7 @@ public class GoogleApiAvailabilityManager {
                     .showErrorDialogFragment((Activity) applicationContext, connectionResult, GoogleApiAvailabilityConstants.REQUEST_GOOGLE_PLAY_SERVICES);
         }
 
-        successCallback.onSuccess(connectionResult);
+        successCallback.onSuccess(GoogleApiAvailabilityConstants.toPlayServiceAvailability(connectionResult));
     }
 
     void makeGooglePlayServicesAvailable(Activity activity, MakeGooglePlayServicesAvailable successCallback, ErrorCallback errorCallback){

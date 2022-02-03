@@ -38,7 +38,7 @@ final class GoogleApiAvailabilityConstants {
     }
 
     @GooglePlayServicesAvailability
-    private int toPlayServiceAvailability(int connectionResult) {
+    static int toPlayServiceAvailability(int connectionResult) {
         switch (connectionResult) {
             case ConnectionResult.SUCCESS:
                 return GOOGLE_PLAY_SERVICES_AVAILABILITY_SUCCESS;
