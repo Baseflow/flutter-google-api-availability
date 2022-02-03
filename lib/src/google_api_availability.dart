@@ -25,6 +25,9 @@ class GoogleApiAvailability {
   /// This feature is only available on Android devices. On any other platforms
   /// the [checkPlayServicesAvailability] method will always return
   /// [GooglePlayServicesAvailability.notAvailableOnPlatform].
+  ///
+  /// Returns the connection status of Google Play Service.
+  /// Optionally, you can also show an error dialog if the connection status is not [SUCCESS].
   Future<GooglePlayServicesAvailability> checkGooglePlayServicesAvailability(
       [bool showDialogIfNecessary = false]) async {
     if (defaultTargetPlatform != TargetPlatform.android) {
@@ -55,6 +58,10 @@ class GoogleApiAvailability {
     final availability =
         await _methodChannel.invokeMethod('makeGooglePlayServicesAvailable');
 
+    if (availability == null) {
+      return false;
+    }
+
     return availability;
   }
 
@@ -66,6 +73,10 @@ class GoogleApiAvailability {
     }
 
     final errorString = await _methodChannel.invokeMethod('getErrorString');
+
+    if (errorString == null) {
+      return "ErrorString is null";
+    }
 
     return errorString;
   }
@@ -80,6 +91,10 @@ class GoogleApiAvailability {
 
     final isUserResolvable =
         await _methodChannel.invokeMethod('isUserResolvable');
+
+    if (isUserResolvable == null) {
+      return false;
+    }
 
     return isUserResolvable;
   }
@@ -98,6 +113,10 @@ class GoogleApiAvailability {
 
     final showErrorNotification =
         await _methodChannel.invokeMethod('showErrorNotification');
+
+    if (showErrorNotification == null) {
+      return false;
+    }
 
     return showErrorNotification;
   }
