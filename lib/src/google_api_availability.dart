@@ -52,8 +52,8 @@ class GoogleApiAvailability {
       return false;
     }
 
-    final availability = await _methodChannel.invokeMethod(
-        'makeGooglePlayServicesAvailable');
+    final availability =
+        await _methodChannel.invokeMethod('makeGooglePlayServicesAvailable');
 
     return availability;
   }

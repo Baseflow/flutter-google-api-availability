@@ -81,8 +81,7 @@ class _MyAppState extends State<MyApp> {
               ),
               Center(
                   child: Text(
-                      'Google Play Store status: ${_playStoreAvailability.toString().split('.').last}\n')
-              ),
+                      'Google Play Store status: ${_playStoreAvailability.toString().split('.').last}\n')),
               MaterialButton(
                 onPressed: () => makeGooglePlayServicesAvailable(),
                 child: const Text('Set Google Play Service to availabe'),
