@@ -71,24 +71,21 @@ void main() {
       debugDefaultTargetPlatformOverride = null;
     });
 
-    test(
-        'Should receive false when availability is null',
-            () async {
-          const availability = null;
+    test('Should receive false when availability is null', () async {
+      const availability = null;
 
-          MethodChannelMock(
-            channelName: 'flutter.baseflow.com/google_api_availability/methods',
-            method: 'makeGooglePlayServicesAvailable',
-            result: availability,
-          );
+      MethodChannelMock(
+        channelName: 'flutter.baseflow.com/google_api_availability/methods',
+        method: 'makeGooglePlayServicesAvailable',
+        result: availability,
+      );
 
-          final googlePlayServiceAvailability =
+      final googlePlayServiceAvailability =
           await const GoogleApiAvailability.private()
               .makeGooglePlayServicesAvailable();
 
-          expect(googlePlayServiceAvailability,
-              false);
-        });
+      expect(googlePlayServiceAvailability, false);
+    });
 
     test(
         'Should receive true when device is able to set Google Play Services to available',
@@ -123,24 +120,21 @@ void main() {
       debugDefaultTargetPlatformOverride = null;
     });
 
-    test(
-        'Should receive "ErrorString is null" when availability is null',
-            () async {
-          const errorString = null;
+    test('Should receive "ErrorString is null" when availability is null',
+        () async {
+      const errorString = null;
 
-          MethodChannelMock(
-            channelName: 'flutter.baseflow.com/google_api_availability/methods',
-            method: 'getErrorString',
-            result: errorString,
-          );
+      MethodChannelMock(
+        channelName: 'flutter.baseflow.com/google_api_availability/methods',
+        method: 'getErrorString',
+        result: errorString,
+      );
 
-          final errorStringResult =
-          await const GoogleApiAvailability.private()
-              .getErrorString();
+      final errorStringResult =
+          await const GoogleApiAvailability.private().getErrorString();
 
-          expect(errorStringResult,
-              "ErrorString is null");
-        });
+      expect(errorStringResult, "ErrorString is null");
+    });
 
     test('Should receive SUCCESS when connection status is success', () async {
       MethodChannelMock(
@@ -168,24 +162,20 @@ void main() {
       debugDefaultTargetPlatformOverride = null;
     });
 
-    test(
-        'Should receive false when isUserResolvable is null',
-            () async {
-          const isUserResolvable = null;
+    test('Should receive false when isUserResolvable is null', () async {
+      const isUserResolvable = null;
 
-          MethodChannelMock(
-            channelName: 'flutter.baseflow.com/google_api_availability/methods',
-            method: 'isUserResolvable',
-            result: isUserResolvable,
-          );
+      MethodChannelMock(
+        channelName: 'flutter.baseflow.com/google_api_availability/methods',
+        method: 'isUserResolvable',
+        result: isUserResolvable,
+      );
 
-          final isUserResolvableResult =
-          await const GoogleApiAvailability.private()
-              .isUserResolvable();
+      final isUserResolvableResult =
+          await const GoogleApiAvailability.private().isUserResolvable();
 
-          expect(isUserResolvableResult,
-              false);
-        });
+      expect(isUserResolvableResult, false);
+    });
 
     test('Should receive true when error is user resolvable', () async {
       MethodChannelMock(
@@ -213,24 +203,20 @@ void main() {
       debugDefaultTargetPlatformOverride = null;
     });
 
-    test(
-        'Should receive false when showErrorNotification is null',
-            () async {
-          const showErrorNotification = null;
+    test('Should receive false when showErrorNotification is null', () async {
+      const showErrorNotification = null;
 
-          MethodChannelMock(
-            channelName: 'flutter.baseflow.com/google_api_availability/methods',
-            method: 'showErrorNotification',
-            result: showErrorNotification,
-          );
+      MethodChannelMock(
+        channelName: 'flutter.baseflow.com/google_api_availability/methods',
+        method: 'showErrorNotification',
+        result: showErrorNotification,
+      );
 
-          final showErrorNotificationResult =
-          await const GoogleApiAvailability.private()
-              .showErrorNotification();
+      final showErrorNotificationResult =
+          await const GoogleApiAvailability.private().showErrorNotification();
 
-          expect(showErrorNotificationResult,
-              false);
-        });
+      expect(showErrorNotificationResult, false);
+    });
 
     test('Should receive true when notification is shown', () async {
       MethodChannelMock(
