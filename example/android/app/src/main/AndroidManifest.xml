@@ -3,7 +3,7 @@
     package="com.baseflow.googleapiavailabilityexample">
 
     <application
-        android:name="io.flutter.app.FlutterApplication"
+        android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:label="google_api_availability_example"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
