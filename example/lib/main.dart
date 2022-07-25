@@ -177,6 +177,15 @@ class _MyAppState extends State<MyApp> {
               Center(
                   child: Text(
                       'Error notification shown: $_errorNotificationShown\n')),
+              MaterialButton(
+                onPressed: () => showErrorDialogFragment(),
+                child: const Text('Show error dialog fragment'),
+                color: Colors.red,
+              ),
+              Center(
+                  child: Text(
+                      'Error dialog shown: $_errorDialogShown\n')),
+
             ],
           )),
     );

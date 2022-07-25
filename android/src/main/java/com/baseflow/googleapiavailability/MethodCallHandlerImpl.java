@@ -78,6 +78,13 @@ public class MethodCallHandlerImpl implements MethodChannel.MethodCallHandler {
                         null));
                 break;
             }
+            case "showErrorDialogFragment": {
+                googleApiAvailabilityManager.showErrorDialogFragment(applicationContext, activity, result::success,(String errorCode, String errorDescription) -> result.error(
+                        errorCode,
+                        errorDescription,
+                        null));
+                break;
+            }
             default:
                 result.notImplemented();
                 break;

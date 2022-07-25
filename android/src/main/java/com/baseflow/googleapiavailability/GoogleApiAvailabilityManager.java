@@ -41,6 +41,11 @@ public class GoogleApiAvailabilityManager {
     }
 
     @FunctionalInterface
+    interface showErrorDialogFragmentCallback {
+        void onSuccess(boolean showErrorDialogFragmentCallback);
+    }
+
+    @FunctionalInterface
     interface ErrorCallback {
         void onError(String errorCode, String errorDescription);
     }
@@ -116,6 +121,24 @@ public class GoogleApiAvailabilityManager {
             connectionResult == GoogleApiAvailabilityConstants.GOOGLE_PLAY_SERVICES_AVAILABILITY_SERVICE_MISSING ||
             connectionResult == GoogleApiAvailabilityConstants.GOOGLE_PLAY_SERVICES_AVAILABILITY_SERVICE_UPDATING ||
             connectionResult == GoogleApiAvailabilityConstants.GOOGLE_PLAY_SERVICES_AVAILABILITY_SERVICE_VERSION_UPDATE_REQUIRED){
+            successCallback.onSuccess(true);
+        }
+
+        successCallback.onSuccess(false);
+    }
+
+    void showErrorDialogFragment(Context applicationContext, Activity activity, showErrorDialogFragmentCallback successCallback, ErrorCallback errorCallback) {
+        if (applicationContext == null) {
+            Log.d(GoogleApiAvailabilityConstants.LOG_TAG, "Context cannot be null.");
+            errorCallback.onError("GoogleApiAvailability.showErrorDialogFragment", "Android context cannot be null.");
+            return;
+        }
+
+        final int errorCode = googleApiAvailability
+                .isGooglePlayServicesAvailable(applicationContext);
+
+        if (errorCode != GoogleApiAvailabilityConstants.GOOGLE_PLAY_SERVICES_AVAILABILITY_SUCCESS) {
+            googleApiAvailability.showErrorDialogFragment(activity, errorCode, GoogleApiAvailabilityConstants.REQUEST_GOOGLE_PLAY_SERVICES);
             successCallback.onSuccess(true);
         }
 

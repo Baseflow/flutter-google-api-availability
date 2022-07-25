@@ -120,4 +120,25 @@ class GoogleApiAvailability {
 
     return showErrorNotification;
   }
+
+  /// Display an error dialog according to the [ErrorCode] if the connection status is not [SUCCESS].
+  ///
+  /// Returns true if the connection status did not equal [SUCCESS] or
+  /// any other non-[ConnectionResult] value.
+  /// Returns false otherwise.
+  Future<bool> showErrorDialogFragment() async {
+    if (defaultTargetPlatform != TargetPlatform.android) {
+      return false;
+    }
+
+    final showErrorDialogFragment =
+    await _methodChannel.invokeMethod('showErrorDialogFragment');
+
+    if (showErrorDialogFragment == null) {
+      return false;
+    }
+
+    return showErrorDialogFragment;
+  }
+
 }
