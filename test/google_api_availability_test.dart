@@ -231,4 +231,45 @@ void main() {
       expect(showErrorNotification, true);
     });
   });
+
+  group('showErrorDialogFragment', () {
+    test('Should receive false if not Android', () async {
+      debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+
+      final showErrorDialogFragment =
+          await const GoogleApiAvailability.private().showErrorDialogFragment();
+
+      expect(showErrorDialogFragment, false);
+
+      debugDefaultTargetPlatformOverride = null;
+    });
+
+    test('Should receive false when showErrorDialogFragment is null', () async {
+      const showErrorDialogFragment = null;
+
+      MethodChannelMock(
+        channelName: 'flutter.baseflow.com/google_api_availability/methods',
+        method: 'showErrorDialogFragment',
+        result: showErrorDialogFragment,
+      );
+
+      final showErrorDialogFragmentResult =
+          await const GoogleApiAvailability.private().showErrorDialogFragment();
+
+      expect(showErrorDialogFragmentResult, false);
+    });
+
+    test('Should receive true when error dialog fragment is shown', () async {
+      MethodChannelMock(
+        channelName: 'flutter.baseflow.com/google_api_availability/methods',
+        method: 'showErrorDialogFragment',
+        result: true,
+      );
+
+      final showErrorDialogFragment =
+          await const GoogleApiAvailability.private().showErrorDialogFragment();
+
+      expect(showErrorDialogFragment, true);
+    });
+  });
 }

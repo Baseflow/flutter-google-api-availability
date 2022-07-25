@@ -127,7 +127,7 @@ class _MyAppState extends State<MyApp> {
 
     try {
       errorDialogFragmentShown =
-      await GoogleApiAvailability.instance.showErrorDialogFragment();
+          await GoogleApiAvailability.instance.showErrorDialogFragment();
     } on PlatformException {
       errorDialogFragmentShown = false;
     }
@@ -202,7 +202,9 @@ class _MyAppState extends State<MyApp> {
                 child: const Text('Show error dialog fragment'),
                 color: Colors.red,
               ),
-              Center(child: Text('Error dialog shown: $_errorDialogFragmentShown\n')),
+              Center(
+                  child:
+                      Text('Error dialog shown: $_errorDialogFragmentShown\n')),
             ],
           )),
     );
