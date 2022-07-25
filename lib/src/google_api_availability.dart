@@ -132,7 +132,7 @@ class GoogleApiAvailability {
     }
 
     final showErrorDialogFragment =
-    await _methodChannel.invokeMethod('showErrorDialogFragment');
+        await _methodChannel.invokeMethod('showErrorDialogFragment');
 
     if (showErrorDialogFragment == null) {
       return false;
@@ -140,5 +140,4 @@ class GoogleApiAvailability {
 
     return showErrorDialogFragment;
   }
-
 }

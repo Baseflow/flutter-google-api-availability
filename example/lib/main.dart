@@ -22,6 +22,7 @@ class _MyAppState extends State<MyApp> {
   String _errorString = "unknown";
   bool _isUserResolvable = false;
   bool _errorNotificationShown = false;
+  bool _errorDialogFragmentShown = false;
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> checkPlayServices([bool showDialog = false]) async {
@@ -121,6 +122,25 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  Future<void> showErrorDialogFragment() async {
+    bool errorDialogFragmentShown;
+
+    try {
+      errorDialogFragmentShown =
+      await GoogleApiAvailability.instance.showErrorDialogFragment();
+    } on PlatformException {
+      errorDialogFragmentShown = false;
+    }
+
+    if (!mounted) {
+      return;
+    }
+
+    setState(() {
+      _errorDialogFragmentShown = errorDialogFragmentShown;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -182,10 +202,7 @@ class _MyAppState extends State<MyApp> {
                 child: const Text('Show error dialog fragment'),
                 color: Colors.red,
               ),
-              Center(
-                  child: Text(
-                      'Error dialog shown: $_errorDialogShown\n')),
-
+              Center(child: Text('Error dialog shown: $_errorDialogFragmentShown\n')),
             ],
           )),
     );
