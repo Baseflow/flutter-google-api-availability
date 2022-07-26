@@ -20,7 +20,6 @@ class _MyAppState extends State<MyApp> {
       GooglePlayServicesAvailability.unknown;
   String _errorString = "unknown";
   bool _isUserResolvable = false;
-  bool _errorNotificationShown = false;
   bool _errorDialogFragmentShown = false;
 
   // Platform messages are asynchronous, so we initialize in an async method.
@@ -96,22 +95,15 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> showErrorNotification() async {
-    bool errorNotificationShown;
-
     try {
-      errorNotificationShown =
-          await GoogleApiAvailability.instance.showErrorNotification();
+      await GoogleApiAvailability.instance.showErrorNotification();
     } on PlatformException {
-      errorNotificationShown = false;
+      return;
     }
 
     if (!mounted) {
       return;
     }
-
-    setState(() {
-      _errorNotificationShown = errorNotificationShown;
-    });
   }
 
   Future<void> showErrorDialogFragment() async {
@@ -184,9 +176,7 @@ class _MyAppState extends State<MyApp> {
                 child: const Text('Show error notification'),
                 color: Colors.red,
               ),
-              Center(
-                  child: Text(
-                      'Error notification shown: $_errorNotificationShown\n')),
+              const SizedBox(height: 30),
               MaterialButton(
                 onPressed: () => showErrorDialogFragment(),
                 child: const Text('Show error dialog fragment'),

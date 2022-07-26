@@ -8,15 +8,13 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   group('checkGooglePlayServiceAvailability', () {
-    test('Should receive notAvailableOnPlatform if not Android', () async {
+    test('Should throw UnsuppertedError if not Android', () async {
       debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
 
-      final googlePlayServiceAvailability =
-          await const GoogleApiAvailability.private()
-              .checkGooglePlayServicesAvailability();
-
-      expect(googlePlayServiceAvailability,
-          GooglePlayServicesAvailability.notAvailableOnPlatform);
+      expect(
+          () async => await const GoogleApiAvailability.private()
+              .checkGooglePlayServicesAvailability(),
+          throwsA(isA<UnsupportedError>()));
 
       debugDefaultTargetPlatformOverride = null;
     });
@@ -59,63 +57,26 @@ void main() {
   });
 
   group('makeGooglePlayServicesAvailable', () {
-    test('Should receive false if not Android', () async {
+    test('Should throw UnsuppertedError if not Android', () async {
       debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
 
-      final googlePlayServiceAvailability =
-          await const GoogleApiAvailability.private()
-              .makeGooglePlayServicesAvailable();
-
-      expect(googlePlayServiceAvailability, false);
+      expect(
+          () async => await const GoogleApiAvailability.private()
+              .makeGooglePlayServicesAvailable(),
+          throwsA(isA<UnsupportedError>()));
 
       debugDefaultTargetPlatformOverride = null;
-    });
-
-    test('Should receive false when availability is null', () async {
-      const availability = null;
-
-      MethodChannelMock(
-        channelName: 'flutter.baseflow.com/google_api_availability/methods',
-        method: 'makeGooglePlayServicesAvailable',
-        result: availability,
-      );
-
-      final googlePlayServiceAvailability =
-          await const GoogleApiAvailability.private()
-              .makeGooglePlayServicesAvailable();
-
-      expect(googlePlayServiceAvailability, false);
-    });
-
-    test(
-        'Should receive true when device is able to set Google Play Services to available',
-        () async {
-      const availability = true;
-
-      MethodChannelMock(
-        channelName: 'flutter.baseflow.com/google_api_availability/methods',
-        method: 'makeGooglePlayServicesAvailable',
-        result: availability,
-      );
-
-      final makeGooglePlayServiceAvailability =
-          await const GoogleApiAvailability.private()
-              .makeGooglePlayServicesAvailable();
-
-      expect(makeGooglePlayServiceAvailability, true);
     });
   });
 
   group('getErrorString', () {
-    test(
-        'Should receive "Not available on non Android devices" if not on Android',
-        () async {
+    test('Should throw UnsuppertedError if not on Android', () async {
       debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
 
-      final errorString =
-          await const GoogleApiAvailability.private().getErrorString();
-
-      expect(errorString, "Not available on non Android devices");
+      expect(
+          () async =>
+              await const GoogleApiAvailability.private().getErrorString(),
+          throwsA(isA<UnsupportedError>()));
 
       debugDefaultTargetPlatformOverride = null;
     });
@@ -151,13 +112,13 @@ void main() {
   });
 
   group('isUserResolvable', () {
-    test('Should receive false if not Android', () async {
+    test('Should throw UnsuppertedError if not Android', () async {
       debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
 
-      final isUserResolvable =
-          await const GoogleApiAvailability.private().isUserResolvable();
-
-      expect(isUserResolvable, false);
+      expect(
+          () async =>
+              await const GoogleApiAvailability.private().isUserResolvable(),
+          throwsA(isA<UnsupportedError>()));
 
       debugDefaultTargetPlatformOverride = null;
     });
@@ -192,54 +153,26 @@ void main() {
   });
 
   group('showErrorNotification', () {
-    test('Should receive false if not Android', () async {
+    test('Should throw UnsuppertedError if not Android', () async {
       debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
 
-      final showErrorNotification =
-          await const GoogleApiAvailability.private().showErrorNotification();
-
-      expect(showErrorNotification, false);
+      expect(
+          () async => await const GoogleApiAvailability.private()
+              .showErrorNotification(),
+          throwsA(isA<UnsupportedError>()));
 
       debugDefaultTargetPlatformOverride = null;
-    });
-
-    test('Should receive false when showErrorNotification is null', () async {
-      const showErrorNotification = null;
-
-      MethodChannelMock(
-        channelName: 'flutter.baseflow.com/google_api_availability/methods',
-        method: 'showErrorNotification',
-        result: showErrorNotification,
-      );
-
-      final showErrorNotificationResult =
-          await const GoogleApiAvailability.private().showErrorNotification();
-
-      expect(showErrorNotificationResult, false);
-    });
-
-    test('Should receive true when notification is shown', () async {
-      MethodChannelMock(
-        channelName: 'flutter.baseflow.com/google_api_availability/methods',
-        method: 'showErrorNotification',
-        result: true,
-      );
-
-      final showErrorNotification =
-          await const GoogleApiAvailability.private().showErrorNotification();
-
-      expect(showErrorNotification, true);
     });
   });
 
   group('showErrorDialogFragment', () {
-    test('Should receive false if not Android', () async {
+    test('Should throw UnsuppertedError if not Android', () async {
       debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
 
-      final showErrorDialogFragment =
-          await const GoogleApiAvailability.private().showErrorDialogFragment();
-
-      expect(showErrorDialogFragment, false);
+      expect(
+          () async => await const GoogleApiAvailability.private()
+              .showErrorDialogFragment(),
+          throwsA(isA<UnsupportedError>()));
 
       debugDefaultTargetPlatformOverride = null;
     });

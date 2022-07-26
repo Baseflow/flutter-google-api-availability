@@ -23,7 +23,7 @@ public class GoogleApiAvailabilityManager {
 
     @FunctionalInterface
     interface MakeGooglePlayServicesAvailableCallback {
-        void onSuccess();
+        void onSuccess(Void v);
     }
 
     @FunctionalInterface
@@ -61,16 +61,17 @@ public class GoogleApiAvailabilityManager {
         final int connectionResult = googleApiAvailability
                 .isGooglePlayServicesAvailable(applicationContext);
 
-        if (activity != null) {
-            if (showDialog != null && showDialog) {
-                googleApiAvailability
-                        .showErrorDialogFragment(activity, connectionResult, GoogleApiAvailabilityConstants.REQUEST_GOOGLE_PLAY_SERVICES);
-            }
-        } else {
+        if (activity == null) {
             if (showDialog != null && showDialog) {
                 // Only log warning when `showDialog` property was `true`.
                 Log.w(GoogleApiAvailabilityConstants.LOG_TAG, "Unable to show dialog as `Activity` is not available.");
             }
+            showDialog = false;
+        }
+
+        if (showDialog != null && showDialog) {
+            googleApiAvailability
+                    .showErrorDialogFragment(activity, connectionResult, GoogleApiAvailabilityConstants.REQUEST_GOOGLE_PLAY_SERVICES);
         }
 
         successCallback.onSuccess(GoogleApiAvailabilityConstants.toPlayServiceAvailability(connectionResult));
@@ -85,7 +86,7 @@ public class GoogleApiAvailabilityManager {
 
         googleApiAvailability.makeGooglePlayServicesAvailable(activity)
                 .addOnFailureListener((Exception e) -> errorCallback.onError("GoogleApiAvailability.makeGooglePlayServicesAvailable", e.getMessage()))
-                .addOnSuccessListener((Void t) -> successCallback.onSuccess());
+                .addOnSuccessListener((Void t) -> successCallback.onSuccess(null));
     }
 
     void getErrorString(Context applicationContext, getErrorStringCallback successCallback, ErrorCallback errorCallback) {

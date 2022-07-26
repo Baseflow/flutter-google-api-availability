@@ -31,7 +31,7 @@ class GoogleApiAvailability {
   Future<GooglePlayServicesAvailability> checkGooglePlayServicesAvailability(
       [bool showDialogIfNecessary = false]) async {
     if (defaultTargetPlatform != TargetPlatform.android) {
-      return GooglePlayServicesAvailability.notAvailableOnPlatform;
+      throw UnsupportedError('Not available on non Android devices.');
     }
 
     final availability = await _methodChannel.invokeMethod(
@@ -55,14 +55,7 @@ class GoogleApiAvailability {
       throw UnsupportedError('Not available on non Android devices.');
     }
 
-    final availability =
-        await _methodChannel.invokeMethod('makeGooglePlayServicesAvailable');
-
-    if (availability == null) {
-      return;
-    }
-
-    return availability;
+    await _methodChannel.invokeMethod('makeGooglePlayServicesAvailable');
   }
 
   /// Returns a human-readable string of the error code.
@@ -104,19 +97,12 @@ class GoogleApiAvailability {
   /// Returns true if the connection status did not equal [SUCCESS] or
   /// any other non-[ConnectionResult] value.
   /// Returns false otherwise.
-  Future<bool> showErrorNotification() async {
+  Future<void> showErrorNotification() async {
     if (defaultTargetPlatform != TargetPlatform.android) {
       throw UnsupportedError('Not available on non Android devices.');
     }
 
-    final showErrorNotification =
-        await _methodChannel.invokeMethod('showErrorNotification');
-
-    if (showErrorNotification == null) {
-      return false;
-    }
-
-    return showErrorNotification;
+    await _methodChannel.invokeMethod('showErrorNotification');
   }
 
   /// Display an error dialog according to the [ErrorCode] if the connection status is not [SUCCESS].
