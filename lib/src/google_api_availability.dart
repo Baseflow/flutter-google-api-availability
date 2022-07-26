@@ -93,10 +93,6 @@ class GoogleApiAvailability {
   /// Displays a notification for an error code, if it is resolvable by the user.
   /// This method is similar to [showErrorDialogFragment], but is provided for
   /// background tasks that cannot or should not display dialogs.
-  ///
-  /// Returns true if the connection status did not equal [SUCCESS] or
-  /// any other non-[ConnectionResult] value.
-  /// Returns false otherwise.
   Future<void> showErrorNotification() async {
     if (defaultTargetPlatform != TargetPlatform.android) {
       throw UnsupportedError('Not available on non Android devices.');
