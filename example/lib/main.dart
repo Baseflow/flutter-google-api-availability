@@ -18,7 +18,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   GooglePlayServicesAvailability _playStoreAvailability =
       GooglePlayServicesAvailability.unknown;
-  bool _madeGooglePlayServiceAvailable = false;
   String _errorString = "unknown";
   bool _isUserResolvable = false;
   bool _errorNotificationShown = false;
@@ -48,22 +47,15 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> makeGooglePlayServicesAvailable() async {
-    bool madeGooglePlayServiceAvailable;
-
     try {
-      madeGooglePlayServiceAvailable = await GoogleApiAvailability.instance
-          .makeGooglePlayServicesAvailable();
+      await GoogleApiAvailability.instance.makeGooglePlayServicesAvailable();
     } on PlatformException {
-      madeGooglePlayServiceAvailable = false;
+      return;
     }
 
     if (!mounted) {
       return;
     }
-
-    setState(() {
-      _madeGooglePlayServiceAvailable = madeGooglePlayServiceAvailable;
-    });
   }
 
   Future<void> getErrorString() async {
@@ -169,12 +161,10 @@ class _MyAppState extends State<MyApp> {
                       'Google Play Store status: ${_playStoreAvailability.toString().split('.').last}\n')),
               MaterialButton(
                 onPressed: () => makeGooglePlayServicesAvailable(),
-                child: const Text('Set Google Play Service to availabe'),
+                child: const Text('Make Google Play Service availabe'),
                 color: Colors.red,
               ),
-              Center(
-                  child: Text(
-                      'Made available: $_madeGooglePlayServiceAvailable\n')),
+              const SizedBox(height: 30),
               MaterialButton(
                 onPressed: () => getErrorString(),
                 child: const Text('Get string of the error code'),

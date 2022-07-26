@@ -45,31 +45,31 @@ class GoogleApiAvailability {
     return GooglePlayServicesAvailability.values[availability];
   }
 
-  /// Returns true if the device was able to set Google Play Services to available,
-  /// Returns false if the device was unable to set Google Play Services to available or status is unknown.
+  /// Attempts to make Google Play services available on this device.
+  /// Shows a dialog if the error is resolvable by user.
   ///
-  /// If it is necessary to display UI in order to complete this request
-  /// (e.g. sending the user to the Google Play store) the passed Activity will be used to display this UI.
-  Future<bool> makeGooglePlayServicesAvailable() async {
+  /// If the `Future` completes without throwing an exception, Play Services
+  /// is available on this device.
+  Future<void> makeGooglePlayServicesAvailable() async {
     if (defaultTargetPlatform != TargetPlatform.android) {
-      return false;
+      throw UnsupportedError('Not available on non Android devices.');
     }
 
     final availability =
         await _methodChannel.invokeMethod('makeGooglePlayServicesAvailable');
 
     if (availability == null) {
-      return false;
+      return;
     }
 
     return availability;
   }
 
-  /// Returns the result of the connection status as a string.
+  /// Returns a human-readable string of the error code.
   /// Will return "Not available on non Android devices" if used on iOS.
   Future<String> getErrorString() async {
     if (defaultTargetPlatform != TargetPlatform.android) {
-      return "Not available on non Android devices";
+      throw UnsupportedError('Not available on non Android devices.');
     }
 
     final errorString = await _methodChannel.invokeMethod('getErrorString');
@@ -81,12 +81,10 @@ class GoogleApiAvailability {
     return errorString;
   }
 
-  /// Returns true if the error is resolvable with getErrorDialog.
-  /// Returns false if the error is not resolvable by the user,
-  /// or the Play Service Availability is already available.
+  /// Determines whether an error can be resolved via user action.
   Future<bool> isUserResolvable() async {
     if (defaultTargetPlatform != TargetPlatform.android) {
-      return false;
+      throw UnsupportedError('Not available on non Android devices.');
     }
 
     final isUserResolvable =
@@ -100,7 +98,7 @@ class GoogleApiAvailability {
   }
 
   /// Displays a notification for an error code, if it is resolvable by the user.
-  /// This method is similar to [getErrorDialog], but is provided for
+  /// This method is similar to [showErrorDialogFragment], but is provided for
   /// background tasks that cannot or should not display dialogs.
   ///
   /// Returns true if the connection status did not equal [SUCCESS] or
@@ -108,7 +106,7 @@ class GoogleApiAvailability {
   /// Returns false otherwise.
   Future<bool> showErrorNotification() async {
     if (defaultTargetPlatform != TargetPlatform.android) {
-      return false;
+      throw UnsupportedError('Not available on non Android devices.');
     }
 
     final showErrorNotification =
@@ -128,7 +126,7 @@ class GoogleApiAvailability {
   /// Returns false otherwise.
   Future<bool> showErrorDialogFragment() async {
     if (defaultTargetPlatform != TargetPlatform.android) {
-      return false;
+      throw UnsupportedError('Not available on non Android devices.');
     }
 
     final showErrorDialogFragment =
