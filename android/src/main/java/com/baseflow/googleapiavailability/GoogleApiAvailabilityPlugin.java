@@ -2,6 +2,7 @@ package com.baseflow.googleapiavailability;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
+
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.embedding.engine.plugins.activity.ActivityAware;
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
@@ -16,10 +17,15 @@ import io.flutter.view.FlutterNativeView;
  */
 public class GoogleApiAvailabilityPlugin implements FlutterPlugin, ActivityAware {
 
+    private final GoogleApiAvailabilityManager googleApiAvailabilityManager;
   private MethodChannel channel;
   private MethodCallHandlerImpl methodCallHandler;
 
-  @Override
+    public GoogleApiAvailabilityPlugin() {
+        this.googleApiAvailabilityManager = new GoogleApiAvailabilityManager();
+    }
+
+    @Override
   public void onAttachedToActivity(ActivityPluginBinding binding) {
     methodCallHandler.setActivity(binding.getActivity());
   }
@@ -64,7 +70,7 @@ public class GoogleApiAvailabilityPlugin implements FlutterPlugin, ActivityAware
   }
 
   private void registerPlugin(Context context, BinaryMessenger messenger) {
-    methodCallHandler = new MethodCallHandlerImpl(context);
+    methodCallHandler = new MethodCallHandlerImpl(context, googleApiAvailabilityManager);
     channel = new MethodChannel(messenger, "flutter.baseflow.com/google_api_availability/methods");
     channel.setMethodCallHandler(methodCallHandler);
   }
