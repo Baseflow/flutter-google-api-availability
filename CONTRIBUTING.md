@@ -33,7 +33,7 @@ We really appreciate contributions via GitHub pull requests. To contribute take 
 
  * Make sure you are up to date with the latest code on the master: 
    * `git fetch upstream`
-   * `git checkout upstream/develop -b <name_of_your_branch>`
+   * `git checkout upstream/main -b <name_of_your_branch>`
  * Apply your changes
  * Verify your changes and fix potential warnings/ errors:
    * Check formatting: `dart format .`
