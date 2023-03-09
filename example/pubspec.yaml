@@ -1,7 +1,6 @@
 name: google_api_availability_example
 description: Demonstrates how to use the google_api_availability plugin.
 version: 1.0.0+1
-publish_to: none
 
 environment:
   sdk: ">=2.15.0 <3.0.0"
@@ -10,10 +9,10 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^0.1.2
-  google_api_availability:
-    path: ../
 
 dev_dependencies:
+  google_api_availability:
+    path: ../
   flutter_lints: 1.0.4
 
 flutter:
