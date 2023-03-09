@@ -28,7 +28,7 @@ jobs:
       # Make sure the stable version of Flutter is available
       - uses: subosito/flutter-action@v1
         with:
-          channel: 'beta'
+          channel: 'stable'
 
       # Download all Flutter packages the google_api_availability depends on
       - name: Download dependencies
