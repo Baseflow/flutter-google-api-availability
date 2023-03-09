@@ -36,8 +36,8 @@ We really appreciate contributions via GitHub pull requests. To contribute take 
    * `git checkout upstream/develop -b <name_of_your_branch>`
  * Apply your changes
  * Verify your changes and fix potential warnings/ errors:
-   * Check formatting: `flutter format .`
-   * Run static analyses: `flutter analyzes`
+   * Check formatting: `dart format .`
+   * Run static analyses: `flutter analyze`
    * Run unit-tests: `flutter test`
  * Commit your changes: `git commit -am "<your informative commit message>"`
  * Push changes to your fork: `git push origin <name_of_your_branch>`
