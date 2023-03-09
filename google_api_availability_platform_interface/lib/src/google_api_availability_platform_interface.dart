@@ -1,8 +1,6 @@
 import 'package:google_api_availability_platform_interface/google_api_availability_platform_interface.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-import 'implementations/method_channel_google_api_availability.dart';
-
 /// The interface that implementations of `google_api_availability` must implement.
 ///
 /// Platform implementations should extend this class rather than implement it
@@ -17,18 +15,20 @@ abstract class GoogleApiAvailabilityPlatform extends PlatformInterface {
 
   static final Object _token = Object();
 
-  static GoogleApiAvailabilityPlatform _instance =
-      MethodChannelGoogleApiAvailability();
+  static GoogleApiAvailabilityPlatform? _instance;
 
   /// The default instance of [GoogleApiAvailabilityPlatform] to use.
-  ///
-  /// Defaults to [MethodChannelGoogleApiAvailability].
-  static GoogleApiAvailabilityPlatform get instance => _instance;
+  static GoogleApiAvailabilityPlatform? get instance => _instance;
 
   /// Platform-specific plugins should set this with their own platform-specific
   /// class that extends [GoogleApiAvailabilityPlatform] when they register
   /// themselves.
-  static set instance(GoogleApiAvailabilityPlatform instance) {
+  static set instance(GoogleApiAvailabilityPlatform? instance) {
+    if (instance == null) {
+      throw AssertionError(
+          'Platform interfaces can only be set to a non-null instance');
+    }
+
     PlatformInterface.verify(instance, _token);
     _instance = instance;
   }

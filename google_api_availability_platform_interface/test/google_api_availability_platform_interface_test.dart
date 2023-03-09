@@ -4,7 +4,6 @@
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_api_availability_platform_interface/google_api_availability_platform_interface.dart';
-import 'package:google_api_availability_platform_interface/src/implementations/method_channel_google_api_availability.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:mockito/mockito.dart';
 
@@ -12,9 +11,8 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   group('$GoogleApiAvailabilityPlatform', () {
-    test('$MethodChannelGoogleApiAvailability is the default instance', () {
-      expect(GoogleApiAvailabilityPlatform.instance,
-          isA<MethodChannelGoogleApiAvailability>());
+    test('The default instance is null', () {
+      expect(GoogleApiAvailabilityPlatform.instance, isNull);
     });
 
     test('Cannot be implemented with `implements`', () {
