@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:google_api_availability/src/models/google_play_services_availability.dart';
+
+import '../google_api_availability.dart';
 
 /// Flutter plugin to verify if Google Play Services are installed on the
 /// device.
