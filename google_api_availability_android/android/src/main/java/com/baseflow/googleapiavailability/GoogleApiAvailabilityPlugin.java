@@ -17,15 +17,15 @@ import io.flutter.view.FlutterNativeView;
  */
 public class GoogleApiAvailabilityPlugin implements FlutterPlugin, ActivityAware {
 
-    private final GoogleApiAvailabilityManager googleApiAvailabilityManager;
+  private final GoogleApiAvailabilityManager googleApiAvailabilityManager;
   private MethodChannel channel;
   private MethodCallHandlerImpl methodCallHandler;
 
-    public GoogleApiAvailabilityPlugin() {
-        this.googleApiAvailabilityManager = new GoogleApiAvailabilityManager();
-    }
+  public GoogleApiAvailabilityPlugin() {
+      this.googleApiAvailabilityManager = new GoogleApiAvailabilityManager();
+  }
 
-    @Override
+  @Override
   public void onAttachedToActivity(ActivityPluginBinding binding) {
     methodCallHandler.setActivity(binding.getActivity());
   }

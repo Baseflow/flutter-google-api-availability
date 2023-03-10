@@ -5,6 +5,14 @@ repository: https://github.com/baseflow/flutter-google-api-availability/tree/mai
 # less-clean API. See https://flutter.dev/go/platform-interface-breaking-changes
 version: 1.0.0
 
+flutter:
+  plugin:
+    implements: google_api_availability
+    platforms:
+      android:
+        package: com.baseflow.googleapiavailability
+        pluginClass: GoogleApiAvailabilityPlugin
+
 dependencies:
   flutter:
     sdk: flutter
