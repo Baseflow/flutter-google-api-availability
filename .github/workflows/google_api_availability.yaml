@@ -7,8 +7,12 @@ name: google_api_availability
 on:
   push:
     branches: [ main ]
+    paths:
+    - 'google_api_availability/**'
   pull_request:
     branches: [ main ]
+    paths:
+    - 'google_api_availability/**'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -17,8 +21,8 @@ jobs:
     # The type of runner that the job will run on
     runs-on: macos-latest
     env:
-      source-directory: ./ 
-      example-directory: ./example
+      source-directory: ./google_api_availability 
+      example-directory: ./google_api_availability/example
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
