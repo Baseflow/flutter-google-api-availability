@@ -16,18 +16,18 @@ class GoogleApiAvailability {
   /// Acquires an instance of the [GoogleApiAvailability] class.
   static const GoogleApiAvailability instance = GoogleApiAvailability._();
 
-  /// Returns the connection status of Google Play Service.
+  /// Returns the connection status of Google Play Services.
   ///
   /// Optionally, you can also show an error dialog if the connection status is
   /// not [SUCCESS].
   Future<GooglePlayServicesAvailability> checkGooglePlayServicesAvailability(
       [bool showDialogIfNecessary = false]) async {
-    final availability = await GoogleApiAvailabilityPlatform.instance
-        ?.checkGooglePlayServicesAvailability(showDialogIfNecessary);
-
-    if (availability == null) {
-      return GooglePlayServicesAvailability.unknown;
+    if (GoogleApiAvailabilityPlatform.instance == null) {
+      throw UnsupportedError('This platform is not supported.');
     }
+
+    final availability = await GoogleApiAvailabilityPlatform.instance!
+        .checkGooglePlayServicesAvailability(showDialogIfNecessary);
 
     return GooglePlayServicesAvailability.values[availability.value];
   }
@@ -39,30 +39,33 @@ class GoogleApiAvailability {
   /// If the `Future` completes without throwing an exception, Play Services is
   /// available on this device.
   Future<void> makeGooglePlayServicesAvailable() async {
-    await GoogleApiAvailabilityPlatform.instance
-        ?.makeGooglePlayServicesAvailable();
+    if (GoogleApiAvailabilityPlatform.instance == null) {
+      throw UnsupportedError('This platform is not supported.');
+    }
+    await GoogleApiAvailabilityPlatform.instance!
+        .makeGooglePlayServicesAvailable();
   }
 
   /// Returns a human-readable string of the error code.
   Future<String> getErrorString() async {
-    final errorString =
-        await GoogleApiAvailabilityPlatform.instance?.getErrorString();
-
-    if (errorString == null) {
-      return 'ErrorString is null';
+    if (GoogleApiAvailabilityPlatform.instance == null) {
+      throw UnsupportedError('This platform is not supported.');
     }
+
+    final errorString =
+        await GoogleApiAvailabilityPlatform.instance!.getErrorString();
 
     return errorString;
   }
 
   /// Determines whether an error can be resolved via user action.
   Future<bool> isUserResolvable() async {
-    final isUserResolvable =
-        await GoogleApiAvailabilityPlatform.instance?.isUserResolvable();
-
-    if (isUserResolvable == null) {
-      return false;
+    if (GoogleApiAvailabilityPlatform.instance == null) {
+      throw UnsupportedError('This platform is not supported.');
     }
+
+    final isUserResolvable =
+        await GoogleApiAvailabilityPlatform.instance!.isUserResolvable();
 
     return isUserResolvable;
   }
@@ -72,7 +75,11 @@ class GoogleApiAvailability {
   /// This method is similar to [showErrorDialogFragment], but is provided for
   /// background tasks that cannot or should not display dialogs.
   Future<void> showErrorNotification() async {
-    await GoogleApiAvailabilityPlatform.instance?.showErrorNotification();
+    if (GoogleApiAvailabilityPlatform.instance == null) {
+      throw UnsupportedError('This platform is not supported.');
+    }
+
+    await GoogleApiAvailabilityPlatform.instance!.showErrorNotification();
   }
 
   /// Display an error dialog according to the [ErrorCode] if the connection
@@ -82,12 +89,12 @@ class GoogleApiAvailability {
   /// non-[ConnectionResult] value.
   /// Returns false otherwise.
   Future<bool> showErrorDialogFragment() async {
-    final showErrorDialogFragment =
-        await GoogleApiAvailabilityPlatform.instance?.showErrorDialogFragment();
-
-    if (showErrorDialogFragment == null) {
-      return false;
+    if (GoogleApiAvailabilityPlatform.instance == null) {
+      throw UnsupportedError('This platform is not supported.');
     }
+
+    final showErrorDialogFragment =
+        await GoogleApiAvailabilityPlatform.instance!.showErrorDialogFragment();
 
     return showErrorDialogFragment;
   }

@@ -1,208 +1,216 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_api_availability/google_api_availability.dart';
+import 'package:plugin_platform_interface/plugin_platform_interface.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'method_channel_mock.dart';
+class MockGoogleApiAvailabilityPlatform extends Mock
+    with MockPlatformInterfaceMixin
+    implements GoogleApiAvailabilityPlatform {}
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  group('checkGooglePlayServiceAvailability', () {
-    test('Should throw UnsuppertedError if not Android', () async {
-      debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+  group('GoogleApiAvailability', () {
+    late GoogleApiAvailabilityPlatform googleApiAvailabilityPlatform;
+    late GoogleApiAvailability googleApiAvailability;
 
-      expect(
-          () async => await const GoogleApiAvailability.private()
-              .checkGooglePlayServicesAvailability(),
-          throwsA(isA<UnsupportedError>()));
-
-      debugDefaultTargetPlatformOverride = null;
+    setUp(() {
+      // Arrange.
+      googleApiAvailabilityPlatform = MockGoogleApiAvailabilityPlatform();
+      GoogleApiAvailabilityPlatform.instance = googleApiAvailabilityPlatform;
+      googleApiAvailability = const GoogleApiAvailability.private();
     });
 
-    test('Should receive the corresponding GooglePlayServiceAvailability',
-        () async {
-      const availability = GooglePlayServicesAvailability.serviceDisabled;
+    group('checkGooglePlayServicesAvailability', () {
+      test('Should throw if no platform implementation is registered',
+          () async {
+        // Arrange.
+        GoogleApiAvailabilityPlatform.removeInstance();
 
-      MethodChannelMock(
-        channelName: 'flutter.baseflow.com/google_api_availability/methods',
-        method: 'checkPlayServicesAvailability',
-        result: availability.value,
-      );
+        // Act & Assert.
+        expect(
+          googleApiAvailability.checkGooglePlayServicesAvailability,
+          throwsA(isA<UnsupportedError>()),
+        );
+      });
 
-      final googlePlayServiceAvailability =
-          await const GoogleApiAvailability.private()
-              .checkGooglePlayServicesAvailability();
+      test('Should receive the corresponding $GooglePlayServicesAvailability',
+          () async {
+        // Arrange.
+        const availability = GooglePlayServicesAvailability.serviceDisabled;
 
-      expect(googlePlayServiceAvailability, availability);
+        when(() => googleApiAvailabilityPlatform
+                .checkGooglePlayServicesAvailability())
+            .thenAnswer((_) async => availability);
+
+        // Act.
+        final googlePlayServiceAvailability =
+            await googleApiAvailability.checkGooglePlayServicesAvailability();
+
+        // Assert.
+        expect(
+          googlePlayServiceAvailability,
+          availability,
+        );
+      });
     });
 
-    test(
-        'Should receive GooglePlayServiceAvailability.unknown when availability is null',
-        () async {
-      const availability = null;
+    group('makeGooglePlayServicesAvailable', () {
+      test('Should throw if no platform implementation is registered',
+          () async {
+        // Arrange.
+        GoogleApiAvailabilityPlatform.removeInstance();
 
-      MethodChannelMock(
-        channelName: 'flutter.baseflow.com/google_api_availability/methods',
-        method: 'checkPlayServicesAvailability',
-        result: availability,
-      );
-
-      final googlePlayServiceAvailability =
-          await const GoogleApiAvailability.private()
-              .checkGooglePlayServicesAvailability();
-
-      expect(googlePlayServiceAvailability,
-          GooglePlayServicesAvailability.unknown);
-    });
-  });
-
-  group('makeGooglePlayServicesAvailable', () {
-    test('Should throw UnsuppertedError if not Android', () async {
-      debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
-
-      expect(
-          () async => await const GoogleApiAvailability.private()
-              .makeGooglePlayServicesAvailable(),
-          throwsA(isA<UnsupportedError>()));
-
-      debugDefaultTargetPlatformOverride = null;
-    });
-  });
-
-  group('getErrorString', () {
-    test('Should throw UnsuppertedError if not on Android', () async {
-      debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
-
-      expect(
-          () async =>
-              await const GoogleApiAvailability.private().getErrorString(),
-          throwsA(isA<UnsupportedError>()));
-
-      debugDefaultTargetPlatformOverride = null;
+        // Act & Assert.
+        expect(
+          googleApiAvailability.makeGooglePlayServicesAvailable,
+          throwsA(isA<UnsupportedError>()),
+        );
+      });
     });
 
-    test('Should receive "ErrorString is null" when availability is null',
-        () async {
-      const errorString = null;
+    group('getErrorString', () {
+      test('Should throw if no platform implementation is registered',
+          () async {
+        // Arrange.
+        GoogleApiAvailabilityPlatform.removeInstance();
 
-      MethodChannelMock(
-        channelName: 'flutter.baseflow.com/google_api_availability/methods',
-        method: 'getErrorString',
-        result: errorString,
-      );
+        // Act & Assert.
+        expect(
+          googleApiAvailability.getErrorString,
+          throwsA(isA<UnsupportedError>()),
+        );
+      });
 
-      final errorStringResult =
-          await const GoogleApiAvailability.private().getErrorString();
+      test('Should receive the corresponding error string', () async {
+        // Arrange.
+        const expectedErrorString = 'test_error_string';
 
-      expect(errorStringResult, "ErrorString is null");
+        when(() => googleApiAvailabilityPlatform.getErrorString())
+            .thenAnswer((_) async => expectedErrorString);
+
+        // Act.
+        final errorString =
+            await const GoogleApiAvailability.private().getErrorString();
+
+        // Assert.
+        expect(
+          errorString,
+          expectedErrorString,
+        );
+      });
     });
 
-    test('Should receive SUCCESS when connection status is success', () async {
-      MethodChannelMock(
-        channelName: 'flutter.baseflow.com/google_api_availability/methods',
-        method: 'getErrorString',
-        result: "SUCCESS",
-      );
+    group('isUserResolvable', () {
+      test('Should throw if no platform implementation is registered',
+          () async {
+        // Arrange.
+        GoogleApiAvailabilityPlatform.removeInstance();
 
-      final errorString =
-          await const GoogleApiAvailability.private().getErrorString();
+        // Act & Assert.
+        expect(
+          googleApiAvailability.isUserResolvable,
+          throwsA(isA<UnsupportedError>()),
+        );
+      });
 
-      expect(errorString, "SUCCESS");
-    });
-  });
+      test('Should receive true if the user is resolvable', () async {
+        // Arrange.
+        const expectedIsUserResolvable = true;
 
-  group('isUserResolvable', () {
-    test('Should throw UnsuppertedError if not Android', () async {
-      debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+        when(() => googleApiAvailabilityPlatform.isUserResolvable())
+            .thenAnswer((_) async => expectedIsUserResolvable);
 
-      expect(
-          () async =>
-              await const GoogleApiAvailability.private().isUserResolvable(),
-          throwsA(isA<UnsupportedError>()));
+        // Act.
+        final isUserResolvable = await googleApiAvailability.isUserResolvable();
 
-      debugDefaultTargetPlatformOverride = null;
-    });
+        // Assert.
+        expect(
+          isUserResolvable,
+          expectedIsUserResolvable,
+        );
+      });
 
-    test('Should receive false when isUserResolvable is null', () async {
-      const isUserResolvable = null;
+      test('Should receive false if the user is not resolvable', () async {
+        // Arrange.
+        const expectedIsUserResolvable = false;
 
-      MethodChannelMock(
-        channelName: 'flutter.baseflow.com/google_api_availability/methods',
-        method: 'isUserResolvable',
-        result: isUserResolvable,
-      );
+        when(() => googleApiAvailabilityPlatform.isUserResolvable())
+            .thenAnswer((_) async => expectedIsUserResolvable);
 
-      final isUserResolvableResult =
-          await const GoogleApiAvailability.private().isUserResolvable();
+        // Act.
+        final isUserResolvable = await googleApiAvailability.isUserResolvable();
 
-      expect(isUserResolvableResult, false);
-    });
-
-    test('Should receive true when error is user resolvable', () async {
-      MethodChannelMock(
-        channelName: 'flutter.baseflow.com/google_api_availability/methods',
-        method: 'isUserResolvable',
-        result: true,
-      );
-
-      final isUserResolvable =
-          await const GoogleApiAvailability.private().isUserResolvable();
-
-      expect(isUserResolvable, true);
-    });
-  });
-
-  group('showErrorNotification', () {
-    test('Should throw UnsuppertedError if not Android', () async {
-      debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
-
-      expect(
-          () async => await const GoogleApiAvailability.private()
-              .showErrorNotification(),
-          throwsA(isA<UnsupportedError>()));
-
-      debugDefaultTargetPlatformOverride = null;
-    });
-  });
-
-  group('showErrorDialogFragment', () {
-    test('Should throw UnsuppertedError if not Android', () async {
-      debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
-
-      expect(
-          () async => await const GoogleApiAvailability.private()
-              .showErrorDialogFragment(),
-          throwsA(isA<UnsupportedError>()));
-
-      debugDefaultTargetPlatformOverride = null;
+        // Assert.
+        expect(
+          isUserResolvable,
+          expectedIsUserResolvable,
+        );
+      });
     });
 
-    test('Should receive false when showErrorDialogFragment is null', () async {
-      const showErrorDialogFragment = null;
+    group('showErrorNotification', () {
+      test('Should throw if no platform implementation is registered',
+          () async {
+        // Arrange.
+        GoogleApiAvailabilityPlatform.removeInstance();
 
-      MethodChannelMock(
-        channelName: 'flutter.baseflow.com/google_api_availability/methods',
-        method: 'showErrorDialogFragment',
-        result: showErrorDialogFragment,
-      );
-
-      final showErrorDialogFragmentResult =
-          await const GoogleApiAvailability.private().showErrorDialogFragment();
-
-      expect(showErrorDialogFragmentResult, false);
+        // Act & Assert.
+        expect(
+          googleApiAvailability.showErrorNotification,
+          throwsA(isA<UnsupportedError>()),
+        );
+      });
     });
 
-    test('Should receive true when error dialog fragment is shown', () async {
-      MethodChannelMock(
-        channelName: 'flutter.baseflow.com/google_api_availability/methods',
-        method: 'showErrorDialogFragment',
-        result: true,
-      );
+    group('showErrorDialogFragment', () {
+      test('Should throw if no platform implementation is registered',
+          () async {
+        // Arrange.
+        GoogleApiAvailabilityPlatform.removeInstance();
 
-      final showErrorDialogFragment =
-          await const GoogleApiAvailability.private().showErrorDialogFragment();
+        // Act & Assert.
+        expect(
+          googleApiAvailability.showErrorDialogFragment,
+          throwsA(isA<UnsupportedError>()),
+        );
+      });
 
-      expect(showErrorDialogFragment, true);
+      test('Should receive false when dialog should not be shown', () async {
+        // Arrange.
+        const expectedShowDialogFragment = false;
+
+        when(() => googleApiAvailabilityPlatform.showErrorDialogFragment())
+            .thenAnswer((_) async => expectedShowDialogFragment);
+
+        // Act.
+        final showErrorDialogFragment =
+            await googleApiAvailability.showErrorDialogFragment();
+
+        // Assert.
+        expect(
+          expectedShowDialogFragment,
+          showErrorDialogFragment,
+        );
+      });
+
+      test('Should receive true when dialog should be shown', () async {
+        // Arrange.
+        const expectedShowDialogFragment = true;
+
+        when(() => googleApiAvailabilityPlatform.showErrorDialogFragment())
+            .thenAnswer((_) async => expectedShowDialogFragment);
+
+        // Act.
+        final showErrorDialogFragment =
+            await googleApiAvailability.showErrorDialogFragment();
+
+        // Assert.
+        expect(
+          expectedShowDialogFragment,
+          showErrorDialogFragment,
+        );
+      });
     });
   });
 }
