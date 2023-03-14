@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_api_availability/google_api_availability.dart';
+import 'package:google_api_availability_platform_interface/google_api_availability_platform_interface.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:mocktail/mocktail.dart';
 
