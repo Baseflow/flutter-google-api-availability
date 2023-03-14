@@ -1,11 +1,16 @@
+## 5.0.0
+
+* **BREAKING CHANGES**:
+  * Uses the federated architecture.
+
 ## 4.0.0
 
-* Changed the structure of the native code;
-* Updated the example app;
-* Added `makeGooglePlayServicesAvailable` ;
-* Added `getErrorString`;
-* Added `isUserResolvable`;
-* Added `showErrorNotification`;
+* Changed the structure of the native code.
+* Updated the example app.
+* Added `makeGooglePlayServicesAvailable`.
+* Added `getErrorString`.
+* Added `isUserResolvable`.
+* Added `showErrorNotification`.
 * Added extra tests for the newly added methods.
 
 ## 3.0.2
