@@ -19,6 +19,6 @@
 ### :thinking: Checklist before submitting
 
 - [ ] All projects build
-- [ ] Follows style guide lines ([code style guide](https://github.com/BaseflowIT/flutter-geolocator/blob/develop/CONTRIBUTING.md))
+- [ ] Follows style guide lines ([code style guide](https://github.com/BaseflowIT/flutter-google-api-availability/blob/main/CONTRIBUTING.md))
 - [ ] Relevant documentation was updated
 - [ ] Rebased onto current develop
