@@ -1,7 +1,6 @@
 ## 5.0.0
 
-* **BREAKING CHANGES**:
-  * Uses the federated architecture.
+* **BREAKING CHANGE**: Uses the federated architecture.
 
 ## 4.0.0
 
