@@ -1,6 +1,6 @@
 ## 5.0.0
 
-* **BREAKING CHANGE**: No longer supports iOS, as it was never truly supported.
+* **BREAKING CHANGE**: Removes support for iOS, as it was never truly supported.
 * Uses the federated architecture.
 
 ## 4.0.0
