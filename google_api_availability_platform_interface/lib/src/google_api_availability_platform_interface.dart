@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:google_api_availability_platform_interface/google_api_availability_platform_interface.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
@@ -32,6 +33,13 @@ abstract class GoogleApiAvailabilityPlatform extends PlatformInterface {
     PlatformInterface.verify(instance, _token);
     _instance = instance;
   }
+
+  /// Removes the registered instance of the [GoogleApiAvailabilityPlatform] class.
+  ///
+  /// This method is exposed for testing purposes only and should not be used by
+  /// clients of the plugin.
+  @visibleForTesting
+  static removeInstance() => _instance = null;
 
   /// Returns the connection status of Google Play Service.
   ///
