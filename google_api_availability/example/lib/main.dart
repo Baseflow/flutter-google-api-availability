@@ -6,9 +6,9 @@ import 'package:google_api_availability/google_api_availability.dart';
 
 void main() => runApp(const MyApp());
 
-///Creates the mutable state for this widget
+///Creates the mutable state for this widget.
 class MyApp extends StatefulWidget {
-  ///Named [key] parameter to identify a widget
+  /// Named [key] parameter to identify a widget.
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -18,7 +18,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   GooglePlayServicesAvailability _playStoreAvailability =
       GooglePlayServicesAvailability.unknown;
-  String _errorString = "unknown";
+  String _errorString = 'unknown';
   bool _isUserResolvable = false;
   bool _errorDialogFragmentShown = false;
 
@@ -63,7 +63,7 @@ class _MyAppState extends State<MyApp> {
     try {
       errorString = await GoogleApiAvailability.instance.getErrorString();
     } on PlatformException {
-      errorString = "Not available on non Android devices";
+      errorString = 'Not available on non Android devices';
     }
 
     if (!mounted) {
@@ -153,7 +153,7 @@ class _MyAppState extends State<MyApp> {
                       'Google Play Store status: ${_playStoreAvailability.toString().split('.').last}\n')),
               MaterialButton(
                 onPressed: () => makeGooglePlayServicesAvailable(),
-                child: const Text('Make Google Play Service availabe'),
+                child: const Text('Make Google Play Service available'),
                 color: Colors.red,
               ),
               const SizedBox(height: 30),
