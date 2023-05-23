@@ -3,7 +3,7 @@ description: An Android implementation for the google_api_availability plugin.
 repository: https://github.com/baseflow/flutter-google-api-availability/tree/main/google_api_availability_android
 # NOTE: We strongly prefer non-breaking changes, even at the expense of a
 # less-clean API. See https://flutter.dev/go/platform-interface-breaking-changes
-version: 1.0.0+1
+version: 1.0.1
 
 flutter:
   plugin:
