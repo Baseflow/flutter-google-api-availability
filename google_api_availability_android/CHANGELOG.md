@@ -1,3 +1,7 @@
+## 1.0.1
+
+* Adds support for the namespace property to support Android Gradle Plugin (AGP) 8.
+
 ## 1.0.0+1
 
 * Declares `dartPluginClass` in pubspec declaration.
