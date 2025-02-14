@@ -8,9 +8,6 @@ import io.flutter.embedding.engine.plugins.activity.ActivityAware;
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
 import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.MethodChannel;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
-import io.flutter.plugin.common.PluginRegistry.ViewDestroyListener;
-import io.flutter.view.FlutterNativeView;
 
 /**
  * GoogleApiAvailabilityPlugin
@@ -27,46 +24,40 @@ public class GoogleApiAvailabilityPlugin implements FlutterPlugin, ActivityAware
 
   @Override
   public void onAttachedToActivity(ActivityPluginBinding binding) {
-    methodCallHandler.setActivity(binding.getActivity());
+    if (methodCallHandler != null) {
+      methodCallHandler.setActivity(binding.getActivity());
+    }
   }
 
   @Override
   public void onDetachedFromActivity() {
-    methodCallHandler.setActivity(null);
+    if (methodCallHandler != null) {
+      methodCallHandler.setActivity(null);
+    }
   }
 
   @Override
   public void onReattachedToActivityForConfigChanges(@NonNull ActivityPluginBinding binding) {
-    methodCallHandler.setActivity(binding.getActivity());
+    if (methodCallHandler != null) {
+      methodCallHandler.setActivity(binding.getActivity());
+    }
   }
 
   @Override
   public void onDetachedFromActivityForConfigChanges() {
-    methodCallHandler.setActivity(null);
+    if (methodCallHandler != null) {
+      methodCallHandler.setActivity(null);
+    }
   }
 
   @Override
-  public void onAttachedToEngine(FlutterPluginBinding binding) {
+  public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
     registerPlugin(binding.getApplicationContext(), binding.getBinaryMessenger());
   }
 
   @Override
   public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
     unregisterPlugin();
-  }
-
-  public static void registerWith(Registrar registrar) {
-    final GoogleApiAvailabilityPlugin plugin = new GoogleApiAvailabilityPlugin();
-    plugin.registerPlugin(registrar.context(), registrar.messenger());
-    plugin.methodCallHandler.setActivity(registrar.activity());
-
-    registrar.addViewDestroyListener(new ViewDestroyListener() {
-      @Override
-      public boolean onViewDestroy(FlutterNativeView view) {
-        plugin.unregisterPlugin();
-        return false;
-      }
-    });
   }
 
   private void registerPlugin(Context context, BinaryMessenger messenger) {
@@ -76,7 +67,9 @@ public class GoogleApiAvailabilityPlugin implements FlutterPlugin, ActivityAware
   }
 
   private void unregisterPlugin() {
-    channel.setMethodCallHandler(null);
-    channel = null;
+    if (channel != null) {
+      channel.setMethodCallHandler(null);
+      channel = null;
+    }
   }
 }
