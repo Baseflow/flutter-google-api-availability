@@ -1,3 +1,9 @@
+## 1.0.2
+
+* Fixes compile errors for Flutter 3.29.0 (and above)
+* updates compileSDK to 35
+* updates gradle version to 8.1
+
 ## 1.0.1
 
 * Adds support for the namespace property to support Android Gradle Plugin (AGP) 8.
