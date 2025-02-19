@@ -10,13 +10,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  google_api_availability_android: ^1.0.0+1
+  google_api_availability_android: ^1.0.2
   google_api_availability_platform_interface: ^1.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: 1.0.4
+  flutter_lints: 5.0.0
   mocktail: ^0.3.0
   plugin_platform_interface: ^2.1.4
 
