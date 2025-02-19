@@ -1,4 +1,4 @@
-## 1.0.2
+## 1.1.0
 
  * Fixes compile errors for Flutter 3.29.0 (and above)
  * Updates compileSDKversion to 35
