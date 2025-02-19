@@ -23,7 +23,7 @@ jobs:
 
     env:
       source-directory: ./google_api_availability_android
-      example-directory: ./google_api_availability/example
+      example-directory: ./google_api_availability_android/example
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
