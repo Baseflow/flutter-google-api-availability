@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  google_api_availability_android: ^1.0.2
+  google_api_availability_android: ^1.1.0
   google_api_availability_platform_interface: ^1.0.1
 
 dev_dependencies:
