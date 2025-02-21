@@ -1,3 +1,8 @@
+## 1.1.1
+
+ * Updates gradle version from 8.1.0 to 8.10.2
+ * Updates android.application version from 8.1.0 to 8.7.0
+
 ## 1.1.0
 
  * Fixes compile errors for Flutter 3.29.0 (and above)
