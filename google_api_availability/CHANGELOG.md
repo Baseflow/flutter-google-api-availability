@@ -1,7 +1,8 @@
 ## 5.0.1
 
-* Updated example project
+* Updated example project Gradle build versions.
 * Updated Android package to version 1.1.0 (Flutter 3.29.0 support)
+* Removed codecov from workflow (ratelimits)
 
 ## 5.0.0
 
