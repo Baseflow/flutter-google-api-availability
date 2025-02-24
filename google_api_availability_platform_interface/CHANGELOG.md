@@ -1,3 +1,7 @@
+## next
+
+* Fixed publishing warning'>=2.15.0 <3.0.0' to '>=2.15.0 <4.0.0'.
+
 ## 1.0.1
 
 * Adds `removeInstance` to `GoogleApiAvailabilityPlatform` for testing purposes.
