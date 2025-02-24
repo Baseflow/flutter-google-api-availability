@@ -129,64 +129,68 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(
-            title: const Text('Plugin example app'),
-          ),
-          body: ListView(
-            children: <Widget>[
-              MaterialButton(
-                onPressed: () => checkPlayServices(),
-                child: const Text('Get PlayServices availability'),
-                color: Colors.red,
+        appBar: AppBar(title: const Text('Plugin example app')),
+        body: ListView(
+          children: <Widget>[
+            MaterialButton(
+              onPressed: () => checkPlayServices(),
+              child: const Text('Get PlayServices availability'),
+              color: Colors.red,
+            ),
+            Center(
+              child: Text(
+                'Google Play Store status: ${_playStoreAvailability.toString().split('.').last}\n',
               ),
-              Center(
-                  child: Text(
-                      'Google Play Store status: ${_playStoreAvailability.toString().split('.').last}\n')),
-              MaterialButton(
-                onPressed: () => checkPlayServices(true),
-                child:
-                    const Text('Get PlayServices availability with fix dialog'),
-                color: Colors.redAccent,
+            ),
+            MaterialButton(
+              onPressed: () => checkPlayServices(true),
+              child: const Text(
+                'Get PlayServices availability with fix dialog',
               ),
-              Center(
-                  child: Text(
-                      'Google Play Store status: ${_playStoreAvailability.toString().split('.').last}\n')),
-              MaterialButton(
-                onPressed: () => makeGooglePlayServicesAvailable(),
-                child: const Text('Make Google Play Service available'),
-                color: Colors.red,
+              color: Colors.redAccent,
+            ),
+            Center(
+              child: Text(
+                'Google Play Store status: ${_playStoreAvailability.toString().split('.').last}\n',
               ),
-              const SizedBox(height: 30),
-              MaterialButton(
-                onPressed: () => getErrorString(),
-                child: const Text('Get string of the error code'),
-                color: Colors.red,
-              ),
-              Center(child: Text('Error string: $_errorString\n')),
-              MaterialButton(
-                onPressed: () => isUserResolvable(),
-                child: const Text('Error resolvable by user'),
-                color: Colors.red,
-              ),
-              Center(
-                  child:
-                      Text('Error resolvable by user: $_isUserResolvable\n')),
-              MaterialButton(
-                onPressed: () => showErrorNotification(),
-                child: const Text('Show error notification'),
-                color: Colors.red,
-              ),
-              const SizedBox(height: 30),
-              MaterialButton(
-                onPressed: () => showErrorDialogFragment(),
-                child: const Text('Show error dialog fragment'),
-                color: Colors.red,
-              ),
-              Center(
-                  child:
-                      Text('Error dialog shown: $_errorDialogFragmentShown\n')),
-            ],
-          )),
+            ),
+            MaterialButton(
+              onPressed: () => makeGooglePlayServicesAvailable(),
+              child: const Text('Make Google Play Service available'),
+              color: Colors.red,
+            ),
+            const SizedBox(height: 30),
+            MaterialButton(
+              onPressed: () => getErrorString(),
+              child: const Text('Get string of the error code'),
+              color: Colors.red,
+            ),
+            Center(child: Text('Error string: $_errorString\n')),
+            MaterialButton(
+              onPressed: () => isUserResolvable(),
+              child: const Text('Error resolvable by user'),
+              color: Colors.red,
+            ),
+            Center(
+              child: Text('Error resolvable by user: $_isUserResolvable\n'),
+            ),
+            MaterialButton(
+              onPressed: () => showErrorNotification(),
+              child: const Text('Show error notification'),
+              color: Colors.red,
+            ),
+            const SizedBox(height: 30),
+            MaterialButton(
+              onPressed: () => showErrorDialogFragment(),
+              child: const Text('Show error dialog fragment'),
+              color: Colors.red,
+            ),
+            Center(
+              child: Text('Error dialog shown: $_errorDialogFragmentShown\n'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
