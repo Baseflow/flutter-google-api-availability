@@ -4,7 +4,7 @@ version: 5.0.1
 homepage: https://github.com/baseflowit/flutter-google-api-availability
 
 environment:
-  sdk: '>=2.15.0 <4.0.0'
+  sdk: ^3.5.0
   flutter: ">=2.8.1"
 
 dependencies:
