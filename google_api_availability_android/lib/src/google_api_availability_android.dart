@@ -5,7 +5,8 @@ import 'package:google_api_availability_platform_interface/google_api_availabili
 /// An Android implementation of [GoogleApiAvailabilityPlatform] that used method channels.
 class GoogleApiAvailabilityAndroid extends GoogleApiAvailabilityPlatform {
   static const MethodChannel _methodChannel = MethodChannel(
-      'flutter.baseflow.com/google_api_availability_android/methods');
+    'flutter.baseflow.com/google_api_availability_android/methods',
+  );
 
   /// Registers this class as the default instance of [GoogleApiAvailabilityPlatform].
   static void registerWith() {
@@ -17,8 +18,9 @@ class GoogleApiAvailabilityAndroid extends GoogleApiAvailabilityPlatform {
   /// Optionally, you can also show an error dialog if the connection status is
   /// not [GooglePlayServicesAvailability.success].
   @override
-  Future<GooglePlayServicesAvailability> checkGooglePlayServicesAvailability(
-      [bool showDialogIfNecessary = false]) async {
+  Future<GooglePlayServicesAvailability> checkGooglePlayServicesAvailability([
+    bool showDialogIfNecessary = false,
+  ]) async {
     final availability = await _methodChannel.invokeMethod(
       'checkPlayServicesAvailability',
       <String, bool>{'showDialog': showDialogIfNecessary},
@@ -57,8 +59,9 @@ class GoogleApiAvailabilityAndroid extends GoogleApiAvailabilityPlatform {
   /// Determines whether an error can be resolved via user action.
   @override
   Future<bool> isUserResolvable() async {
-    final isUserResolvable =
-        await _methodChannel.invokeMethod('isUserResolvable');
+    final isUserResolvable = await _methodChannel.invokeMethod(
+      'isUserResolvable',
+    );
 
     if (isUserResolvable == null) {
       return false;
@@ -84,8 +87,9 @@ class GoogleApiAvailabilityAndroid extends GoogleApiAvailabilityPlatform {
   /// non-[ConnectionResult] value. Returns false otherwise.
   @override
   Future<bool> showErrorDialogFragment() async {
-    final showErrorDialogFragment =
-        await _methodChannel.invokeMethod('showErrorDialogFragment');
+    final showErrorDialogFragment = await _methodChannel.invokeMethod(
+      'showErrorDialogFragment',
+    );
 
     if (showErrorDialogFragment == null) {
       return false;

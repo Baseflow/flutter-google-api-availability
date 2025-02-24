@@ -20,8 +20,9 @@ class GoogleApiAvailability {
   ///
   /// Optionally, you can also show an error dialog if the connection status is
   /// not [SUCCESS].
-  Future<GooglePlayServicesAvailability> checkGooglePlayServicesAvailability(
-      [bool showDialogIfNecessary = false]) async {
+  Future<GooglePlayServicesAvailability> checkGooglePlayServicesAvailability([
+    bool showDialogIfNecessary = false,
+  ]) async {
     if (GoogleApiAvailabilityPlatform.instance == null) {
       throw UnsupportedError('This platform is not supported.');
     }

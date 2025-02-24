@@ -8,87 +8,98 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   group('checkGooglePlayServiceAvailability', () {
-    test('Should receive the corresponding GooglePlayServiceAvailability',
-        () async {
-      // Arrange
-      const availability = GooglePlayServicesAvailability.serviceDisabled;
+    test(
+      'Should receive the corresponding GooglePlayServiceAvailability',
+      () async {
+        // Arrange
+        const availability = GooglePlayServicesAvailability.serviceDisabled;
 
-      MethodChannelMock(
-        channelName:
-            'flutter.baseflow.com/google_api_availability_android/methods',
-        method: 'checkPlayServicesAvailability',
-        result: availability.value,
-      );
+        MethodChannelMock(
+          channelName:
+              'flutter.baseflow.com/google_api_availability_android/methods',
+          method: 'checkPlayServicesAvailability',
+          result: availability.value,
+        );
 
-      // Act
-      final googlePlayServiceAvailability = await GoogleApiAvailabilityAndroid()
-          .checkGooglePlayServicesAvailability();
+        // Act
+        final googlePlayServiceAvailability =
+            await GoogleApiAvailabilityAndroid()
+                .checkGooglePlayServicesAvailability();
 
-      // Assert
-      expect(googlePlayServiceAvailability, availability);
-    });
+        // Assert
+        expect(googlePlayServiceAvailability, availability);
+      },
+    );
 
     test(
-        'Should receive GooglePlayServiceAvailability.unknown when availability is null',
-        () async {
-      // Arrange
-      const availability = null;
+      'Should receive GooglePlayServiceAvailability.unknown when availability is null',
+      () async {
+        // Arrange
+        const availability = null;
 
-      MethodChannelMock(
-        channelName:
-            'flutter.baseflow.com/google_api_availability_android/methods',
-        method: 'checkPlayServicesAvailability',
-        result: availability,
-      );
+        MethodChannelMock(
+          channelName:
+              'flutter.baseflow.com/google_api_availability_android/methods',
+          method: 'checkPlayServicesAvailability',
+          result: availability,
+        );
 
-      // Act
-      final googlePlayServiceAvailability = await GoogleApiAvailabilityAndroid()
-          .checkGooglePlayServicesAvailability();
+        // Act
+        final googlePlayServiceAvailability =
+            await GoogleApiAvailabilityAndroid()
+                .checkGooglePlayServicesAvailability();
 
-      // Assert
-      expect(googlePlayServiceAvailability,
-          GooglePlayServicesAvailability.unknown);
-    });
+        // Assert
+        expect(
+          googlePlayServiceAvailability,
+          GooglePlayServicesAvailability.unknown,
+        );
+      },
+    );
   });
 
   group('getErrorString', () {
-    test('Should receive "ErrorString is null" when availability is null',
-        () async {
-      // Arrange
-      const errorString = null;
+    test(
+      'Should receive "ErrorString is null" when availability is null',
+      () async {
+        // Arrange
+        const errorString = null;
 
-      MethodChannelMock(
-        channelName:
-            'flutter.baseflow.com/google_api_availability_android/methods',
-        method: 'getErrorString',
-        result: errorString,
-      );
+        MethodChannelMock(
+          channelName:
+              'flutter.baseflow.com/google_api_availability_android/methods',
+          method: 'getErrorString',
+          result: errorString,
+        );
 
-      // Act
-      final errorStringResult =
-          await GoogleApiAvailabilityAndroid().getErrorString();
+        // Act
+        final errorStringResult =
+            await GoogleApiAvailabilityAndroid().getErrorString();
 
-      //Assert
-      expect(errorStringResult, "ErrorString is null");
-    });
+        //Assert
+        expect(errorStringResult, "ErrorString is null");
+      },
+    );
 
     test(
-        'Should receive ${GooglePlayServicesAvailability.success} when connection status is success',
-        () async {
-      // Arrange
-      MethodChannelMock(
-        channelName:
-            'flutter.baseflow.com/google_api_availability_android/methods',
-        method: 'getErrorString',
-        result: "SUCCESS",
-      );
+      'Should receive ${GooglePlayServicesAvailability.success} when connection status is success',
+      () async {
+        // Arrange
+        MethodChannelMock(
+          channelName:
+              'flutter.baseflow.com/google_api_availability_android/methods',
+          method: 'getErrorString',
+          result: "SUCCESS",
+        );
 
-      // Act
-      final errorString = await GoogleApiAvailabilityAndroid().getErrorString();
+        // Act
+        final errorString =
+            await GoogleApiAvailabilityAndroid().getErrorString();
 
-      // Assert
-      expect(errorString, "SUCCESS");
-    });
+        // Assert
+        expect(errorString, "SUCCESS");
+      },
+    );
   });
 
   group('isUserResolvable', () {
