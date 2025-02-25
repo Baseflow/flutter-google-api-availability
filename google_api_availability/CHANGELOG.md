@@ -3,6 +3,7 @@
 * Updated example project Gradle build versions.
 * Updated Android package to version 1.1.0 (Flutter 3.29.0 support)
 * Removed codecov from workflow (ratelimits)
+* Fixed publishing warning and updated Dart SDK dependency from '>=2.15.0 <3.0.0' to '^3.5.0'.
 
 ## 5.0.0
 
