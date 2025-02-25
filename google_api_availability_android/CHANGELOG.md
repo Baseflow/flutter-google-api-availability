@@ -2,7 +2,7 @@
 
  * Updates gradle version from 8.1.0 to 8.10.2
  * Updates android.application version from 8.1.0 to 8.7.0
- * Fixed publishing warning'>=2.15.0 <3.0.0' to '>=2.15.0 <4.0.0'.
+* Fixed publishing warning and updated Dart SDK dependency from '>=2.15.0 <3.0.0' to '^3.5.0'.
 
 ## 1.1.0
 
