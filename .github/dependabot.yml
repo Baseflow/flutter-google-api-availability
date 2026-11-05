@@ -1,0 +1,110 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    reviewers:
+      - "mvanbeusekom"
+    labels:
+      - "platform: ci"
+
+  - package-ecosystem: "gradle"
+    directory: "/google_api_availability_android/android"
+    commit-message:
+      prefix: "[google_api_availability_android]"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "mvanbeusekom"
+    open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: "com.android.tools.build:gradle"
+        update-types: ["version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "junit:junit"
+        update-types: ["version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "org.mockito:*"
+        update-types: ["version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "androidx.test:*"
+        update-types: ["version-update:semver-minor", "version-update:semver-patch"]
+
+  - package-ecosystem: "gradle"
+    directory: "/google_api_availability_android/example/android/app"
+    commit-message:
+      prefix: "[google_api_availability_android]"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "mvanbeusekom"
+    open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-minor", "version-update:semver-patch"]
+
+  - package-ecosystem: "gradle"
+    directory: "/google_api_availability/example/android/app"
+    commit-message:
+      prefix: "[google_api_availability]"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "mvanbeusekom"
+    open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-minor", "version-update:semver-patch"]
+
+  - package-ecosystem: "pub"
+    directory: "/google_api_availability"
+    commit-message:
+      prefix: "[google_api_availability]"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "mvanbeusekom"
+    open-pull-requests-limit: 10
+
+  - package-ecosystem: "pub"
+    directory: "/google_api_availability/example"
+    commit-message:
+      prefix: "[google_api_availability]"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "mvanbeusekom"
+    open-pull-requests-limit: 10
+
+  - package-ecosystem: "pub"
+    directory: "/google_api_availability_android"
+    commit-message:
+      prefix: "[google_api_availability_android]"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "mvanbeusekom"
+    open-pull-requests-limit: 10
+
+  - package-ecosystem: "pub"
+    directory: "/google_api_availability_android/example"
+    commit-message:
+      prefix: "[google_api_availability_android]"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "mvanbeusekom"
+    open-pull-requests-limit: 10
+
+  - package-ecosystem: "pub"
+    directory: "/google_api_availability_platform_interface"
+    commit-message:
+      prefix: "[google_api_availability_platform_interface]"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "mvanbeusekom"
+    open-pull-requests-limit: 10
