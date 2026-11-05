@@ -44,5 +44,5 @@ android {
 
 dependencies {
     implementation("com.google.android.gms:play-services-base:18.11.1")
-    implementation("androidx.annotation:annotation:1.1.0")
+    implementation("androidx.annotation:annotation:1.11.0")
 }
