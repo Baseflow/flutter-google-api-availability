@@ -1,3 +1,8 @@
+## 5.1.0
+
+* Updates the minimum supported Flutter version to 3.24, matching the Dart 3.5
+  SDK constraint.
+
 ## 5.0.1
 
 * Updated example project Gradle build versions.
