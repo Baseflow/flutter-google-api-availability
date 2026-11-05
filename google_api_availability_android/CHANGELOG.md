@@ -1,3 +1,10 @@
+## 1.2.0
+
+* Updates the minimum supported Flutter version to 3.24, matching the Dart 3.5
+  SDK constraint.
+* Migrates the Gradle build to the Kotlin DSL, Android Gradle Plugin 9.1,
+  compile SDK 36 and Java 17.
+
 ## 1.1.1
 
  * Updates gradle version from 8.1.0 to 8.10.2
